@@ -1,5 +1,6 @@
 {
-  "name": "st-martin-reservation",
+  "name": "Car-resell-site-client-part",
+  "owner": "Esa Mohammad",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
