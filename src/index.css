@@ -1,3 +1,17 @@
+/* //!Font */
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Oswald&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+/* font-family: 'Lobster', cursive; */
+
+@import url('https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@1&display=swap');
+/* bangla font */
+/* font-family: 'Tiro Bangla', serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+/* font-family: 'Aclonica', sans-serif; */
+
 /* //! tailwind .. */
 @tailwind base;
 @tailwind components;

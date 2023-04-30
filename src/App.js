@@ -20,7 +20,7 @@ function App() {
           <Loader></Loader>
         ) : (
           <div>
-            <div className="mx-auto max-w-full">
+            <div className="mx-auto max-w-[1440px]">
       <RouterProvider router={routes}></RouterProvider>
             </div>
           </div>
@@ -33,16 +33,4 @@ function App() {
 export default App;
 
 
-
-/*
-import {RouterProvider} from 'react-router-dom'
-import { routes } from './Routes/Routes';
-function App() {
-  return (
-    <div >
-      <RouterProvider router={routes}></RouterProvider>
-    </div>
-  );
-}
-export default App;
-*/
+// ! max width set korlam
