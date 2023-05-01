@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 //!navbar variable
 const menuItems = <React.Fragment>
     <li><Link to="/">Home</Link></li>
-    <li><Link to="/Use">Cars</Link></li>
+    <li><Link to="/product">Product</Link></li>
     <li><Link to="/faq">FAQ</Link></li>
    
     <li><Link to="/dashboard">Dashboard</Link></li>
@@ -19,7 +19,7 @@ const menuItems = <React.Fragment>
 const Navbar = () => {
 
     return (
-        <div className="navbar bg-gray-400">
+        <div className="navbar bg-gray-100">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -29,9 +29,9 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost normal-case text-xl lg:text-3xl lg:ml-10 " style={{ fontFamily: "'Aclonica', sans-serif" }}>CAR SELL</Link>
+                <Link to="/" className="btn btn-ghost normal-case text-xl lg:text-3xl lg:ml-3 " style={{ fontFamily: "'Aclonica', sans-serif" }}>CAR SELL</Link>
             </div>
-            <div className="navbar-end  hidden lg:flex text-xl font-bold lg:mr-10">
+            <div className="navbar-end  hidden lg:flex text-xl font-bold lg:mr-4">
                 <ul className="menu menu-horizontal p-0">
                     {menuItems}
                 </ul>

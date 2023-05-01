@@ -5,7 +5,7 @@ import Faq from "../pages/Faq";
 import Login from "../pages/Login";
 import ErrorPage from "../pages/ErrorPage";
 import Register from "../pages/Register";
-import Use from "../pages/Use";
+import Product from "../pages/Product";
 import Main from "../layout/Main";
 import Dashboard from "../pages/Dashboard";
 
@@ -19,8 +19,8 @@ export const routes = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path: "/use",
-                element: <Use></Use>
+                path: "/product",
+                element: <Product></Product>
             },
             {
                 path: "/faq",
