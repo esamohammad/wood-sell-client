@@ -29,7 +29,7 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost normal-case text-xl lg:text-3xl lg:ml-3 " style={{ fontFamily: "'Aclonica', sans-serif" }}>CAR SELL</Link>
+                <Link to="/" className="btn btn-ghost normal-case text-xl lg:text-3xl lg:ml-3 " style={{ fontFamily: "'Aclonica', sans-serif" }}>Wood Sell</Link>
             </div>
             <div className="navbar-end  hidden lg:flex text-xl font-bold lg:mr-4">
                 <ul className="menu menu-horizontal p-0">
