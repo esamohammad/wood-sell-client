@@ -5,18 +5,27 @@ import { Link } from 'react-router-dom';
 
 
 
-//!navbar variable
-const menuItems = <React.Fragment>
-    <li><Link to="/">Home</Link></li>
-    <li><Link to="/product">Product</Link></li>
-    <li><Link to="/faq">FAQ</Link></li>
-   
-    <li><Link to="/dashboard">Dashboard</Link></li>
-    <li><Link to="/register">Register</Link></li>
-    <li><Link to="/login">Login</Link></li>
-</React.Fragment>
 
 const Navbar = () => {
+
+
+
+
+
+
+    //!navbar variable
+    const menuItems = <React.Fragment>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/product">Product</Link></li>
+        <li><Link to="/faq">FAQ</Link></li>
+
+        <li><Link to="/dashboard">Dashboard</Link></li>
+        <li><Link to="/register">Register</Link></li>
+        <li><Link to="/login">Login</Link></li>
+    </React.Fragment>
+
+
+
 
     return (
         <div className="navbar bg-gray-100">
