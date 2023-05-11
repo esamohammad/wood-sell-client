@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import { RouterProvider } from 'react-router-dom'
 import { routes } from './routes/Routes';
 import { useEffect, useState } from "react";
@@ -22,6 +23,7 @@ function App() {
           <div>
             <div className="mx-auto max-w-[1440px]">
       <RouterProvider router={routes}></RouterProvider>
+                <Toaster />
             </div>
           </div>
         )}
