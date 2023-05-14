@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Category = ({ category }) => {
+const CategoryCard = ({ category }) => {
     const { _id, image, name } = category;
+
+
+    
     return (
         <div>
-            <Link to={`/category/${_id}`}>
+            <Link to={`/category/${category.id}`}> 
                 <div className={`card hover:bg-accent bg-base-100 shadow-xl text-secondary`}>
                     <div className="card-body">
                         <div className="card-actions justify-center">
@@ -18,4 +21,6 @@ const Category = ({ category }) => {
     );
 };
 
-export default Category;
+export default CategoryCard;
+
+//id and _id is the factor.

@@ -1,14 +1,10 @@
 import React from 'react';
 
-
-const Product = ({item}) => {
-
-    console.log(item)
-
-    const { condition, image, location, name, originalPrice, postedTime, resalePrice, sellerName, usedYear, verified, } = item;
+const AllProductsCard = ({product}) => {
+    const { condition, image, location, name, originalPrice, postedTime, resalePrice, sellerName, usedYear, verified } = product;
     return (
         <div>
-        
+
             <div className="card w-96 h-[560px] bg-base-100 shadow-xl">
                 <figure><img src={image} alt="Shoes" className='h-64 w-full  border-2 rounded-2xl' /></figure>
                 <div className='mx-5 text-left'>
@@ -44,4 +40,4 @@ const Product = ({item}) => {
     );
 };
 
-export default Product;
+export default AllProductsCard;

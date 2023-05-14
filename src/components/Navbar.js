@@ -16,9 +16,8 @@ const Navbar = () => {
     //!navbar variable
     const menuItems = <React.Fragment>
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/product">Product</Link></li>
+        <li><Link to="/allproducts">All Products</Link></li>
         <li><Link to="/faq">FAQ</Link></li>
-
         <li><Link to="/dashboard">Dashboard</Link></li>
         <li><Link to="/register">Register</Link></li>
         <li><Link to="/login">Login</Link></li>

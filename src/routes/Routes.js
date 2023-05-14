@@ -1,14 +1,19 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
-import Faq from "../pages/Faq";
+
 import Login from "../pages/Login";
 import ErrorPage from "../pages/ErrorPage";
 import Register from "../pages/Register";
-import Product from "../pages/Product";
+
 import Main from "../layout/Main";
 import Dashboard from "../pages/Dashboard";
-import Category from "../components/Category";
-import Furnitures from "../pages/Furnitures";
+import Category from "../pages/Category";
+import Product from "../pages/Product";
+import Faq from '../pages/Faq';
+import AllProducts from "../pages/AllProducts";
+
+
+// import AllProduct from "../pages/AllProduct";
 
 export const routes = createBrowserRouter([
     {
@@ -20,21 +25,28 @@ export const routes = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path: '/category/:id',
-                element: <Furnitures></Furnitures>,
-                loader:({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
+                path: "/category/:id",
+                element: <Category></Category>,
+                loader: ({ params }) => fetch(`http://localhost:5000/items/${params.id}`)
+
             },
             {
-                path: "/products/:id",
-                element: <Product></Product>
+                path: "/product/;id",
+                element: <Product></Product>,
+                
             },
             {
-                path: "/faq",
-                element: <Faq></Faq>
+                path: "/allproducts",
+                element: <AllProducts></AllProducts>,
+                loader: () => fetch("http://localhost:5000/products"),
             },
             {
                 path: "/login",
                 element: <Login></Login>,
+            },
+            {
+                path: "/faq",
+                element: <Faq></Faq>,
             },
             {
                 path: "/register",
