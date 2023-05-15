@@ -1,10 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import useTitle from '../hooks/useTitle';
 
 
 const Register = () => {
-
+useTitle('Register');
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const handleSignUp = (data) => {

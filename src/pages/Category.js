@@ -2,6 +2,7 @@ import React from 'react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 import Spinner from '../utils/Spinner';
 import Product from './Product';
+import useTitle from '../hooks/useTitle';
 
 
 
@@ -10,7 +11,7 @@ const Category = () => {
     const navigation = useNavigation()
 
     const { category_id ,name} = items;
-
+useTitle('Category')
 
 
 

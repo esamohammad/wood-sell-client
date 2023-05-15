@@ -7,12 +7,14 @@ import Advertisement from '../components/Advertisement';
 import Extrasection from '../components/Extrasection';
 import WhyUs from '../components/WhyUs';
 import HeroBanner from '../components/HeroBanner';
+import useTitle from '../hooks/useTitle';
 
 
 
 
 
 const Home = () => {
+    useTitle("Home");
     return (
         <div className='lg:max-w-screen-xl mx-auto '>
             <Slider></Slider>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 import Spinner from '../utils/Spinner';
 import AllProductsCard from './AllProductsCard';
+import useTitle from '../hooks/useTitle';
 
 const AllProducts = () => {
 
@@ -9,7 +10,7 @@ const AllProducts = () => {
     const navigation = useNavigation()
 
     const { _id } = products;
-
+useTitle("All Products");
 
 
 
