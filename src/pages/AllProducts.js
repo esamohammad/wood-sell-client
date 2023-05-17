@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 import Spinner from '../utils/Spinner';
 import AllProductsCard from './AllProductsCard';
 import useTitle from '../hooks/useTitle';
+import BookingModal from '../components/BookingModal';
 
 const AllProducts = () => {
 
@@ -10,6 +11,7 @@ const AllProducts = () => {
     const navigation = useNavigation()
 
     const { _id } = products;
+    const [item, setItem] = useState(null);
 useTitle("All Products");
 
 
@@ -26,12 +28,18 @@ useTitle("All Products");
                 {
                     products.map(product => <AllProductsCard
                         key={product._id}
-                        product={product}></AllProductsCard>)
+                        product={product}
+                        setItem={setItem}
+                    ></AllProductsCard>)
                 }
             </div>
 
 
-            {products.length}
+            {item &&
+                <BookingModal
+                    item={item}
+                    setItem={setItem}
+                ></BookingModal>}
 
         </div>
     );

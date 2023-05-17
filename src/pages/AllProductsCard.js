@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AllProductsCard = ({product}) => {
+const AllProductsCard = ({ product, setItem }) => {
     const { condition, image, location, name, originalPrice, postedTime, resalePrice, sellerName, usedYear, verified } = product;
     return (
         <div>
@@ -33,7 +33,12 @@ const AllProductsCard = ({product}) => {
                         <p className='font-semibold'>Condition : <span className='font-bold'>{condition}</span></p>
                         <p className='font-semibold'>Used For : <span className='font-bold'>{usedYear} Years</span></p>
                     </div>
-                    <button className='btn btn-outline btn-secondary w-full mt-5'>Add To Cart</button>
+
+                    <label
+                        htmlFor="booking-modal"
+                        className="btn btn-outline btn-secondary w-full mt-5"
+                        onClick={() => setItem(product)}
+                    >Add To Cart</label>
                 </div>
             </div>
         </div>

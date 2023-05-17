@@ -1,8 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigation } from 'react-router-dom';
+import Spinner from '../utils/Spinner';
 
 const AdvertisementCard = ({ add }) => {
     const { condition, image, location, name, originalPrice, postedTime, resalePrice, sellerName, usedYear, verified, _id, report } = add;
+    const navigation = useNavigation()
+
+    if (navigation.state === 'loading') {
+        return <Spinner></Spinner>
+    }
+    
+    
+    
     return (
         <div>
 
