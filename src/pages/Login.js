@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import useTitle from '../hooks/useTitle';
 
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthProvider';
 
 
 
@@ -11,10 +12,24 @@ import { Link } from 'react-router-dom';
 const Login = () => {
     useTitle('Login');
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const { signIn } = useContext(AuthContext);
+    const [loginError, setLoginError] = useState(''); //*firebase-login error showed state.
+
+
     //! Own making handleLogin -73.2,NOD.
     const handleLogin = data => {
         console.log(data);
+        setLoginError(''); //*firebase-login error clear otherwise stay in position.
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+            })
 
+            .catch(error => {
+                console.log(error.message)
+                setLoginError(error.message);
+            });
     }
 
 
@@ -61,6 +76,13 @@ const Login = () => {
                     </div>
 
                     <input className='btn btn-outline w-full' value="Login" type="submit" />
+
+
+                    {/* //!Firebase error messages */}
+                    <div>
+                        {loginError && <p className='text-red-600'>{loginError}</p>}
+                    </div>
+
                 </form>
                 <p>Are you new..?  <Link className='text-primary font-bold' to="/register">Create new Account</Link></p>
                 <div className="divider">OR</div>
