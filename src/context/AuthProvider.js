@@ -1,62 +1,36 @@
-import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
-import app from '../firebase/Firebase.config';
+import React, { createContext } from 'react';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import app from '../firebase/Firebase.config'; 
 
 export const AuthContext = createContext();
-const auth = getAuth(app);
+const auth = getAuth(app)
+
+
+
 const AuthProvider = ({ children }) => {
 
-    const [loading, setLoading] = useState(false)
-    const [user, setUser] = useState(null);
-
-
-
+// !====================================
+// *create user with email and password
     const createUser = (email, password) => {
-        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
-    const providerLogin = (provider) => {
-        setLoading(true)
-        return signInWithPopup(auth, provider);
+// *----------------------------------\\
 
-    };
-    const signIn = (email, password) => {
-        setLoading(true);
-        return signInWithEmailAndPassword(auth, email, password);
-    }
 
-    const updateUser = (userInfo) => {
-        return updateProfile(auth.currentUser, userInfo);
-    }
 
-    const logOut = () => {
-        setLoading(true);
-        return signOut(auth);
-    }
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            console.log('user observing');
-            setUser(currentUser);
-            setLoading(false);
-        });
-
-        return () => unsubscribe();
-    }, [])
 
     const authInfo = {
-        createUser,
-        signIn,
-        updateUser,
-        logOut,
-        providerLogin,
-        user,
-        loading,
-        setLoading,
-
+        createUser
     }
+
+
+
+    
+
     return (
-        <AuthContext.Provider value={authInfo}>
+        <AuthContext.Provider
+            value={authInfo}>
             {children}
         </AuthContext.Provider>
     );

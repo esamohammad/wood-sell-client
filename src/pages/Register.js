@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import useTitle from '../hooks/useTitle';
+import  { AuthContext } from '../context/AuthProvider';
 
 
 const Register = () => {
 useTitle('Register');
     const { register, handleSubmit, formState: { errors } } = useForm();
-
+    const { createUser } = useContext(AuthContext);
     const handleSignUp = (data) => {
         console.log(data);
-        console.log(errors);
+        createUser(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.log(error));
     }
 
     return (
@@ -49,7 +55,7 @@ useTitle('Register');
 
                     <input className='btn btn-outline w-full max-w-xs mt-4' value="Sign Up" type="submit" />
                 </form>
-                <p>Already have an account <Link className='text-secondary' to="/login">Please Login</Link></p>
+                <p>Already have an account <Link className='text-primary font-bold' to="/login">Please Login</Link></p>
                 <div className="divider">OR</div>
                 <button className='btn btn-outline w-full max-w-xs'>CONTINUE WITH GOOGLE</button>
 
