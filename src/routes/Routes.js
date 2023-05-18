@@ -11,6 +11,7 @@ import Category from "../pages/Category";
 import Product from "../pages/Product";
 import Faq from '../pages/Faq';
 import AllProducts from "../pages/AllProducts";
+import PrivateRoute from "./PrivateRoute";
 
 
 // import AllProduct from "../pages/AllProduct";
@@ -60,6 +61,6 @@ export const routes = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <Dashboard></Dashboard>
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
     }
 ]);

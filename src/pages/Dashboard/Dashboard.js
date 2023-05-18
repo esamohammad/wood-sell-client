@@ -5,7 +5,7 @@ const Dashboard = () => {
     useTitle('Dashboard');
     return (
         <div>
-            Dashboard
+            <h2>Coming Soooooooon</h2>
         </div>
     );
 };

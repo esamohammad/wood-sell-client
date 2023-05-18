@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import useTitle from '../hooks/useTitle';
 
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
 import { toast } from 'react-hot-toast';
 
@@ -15,6 +15,16 @@ const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { signIn } = useContext(AuthContext);
     const [loginError, setLoginError] = useState(''); //*firebase-login error showed state.
+    const location = useLocation(); //!private route - return location
+    const navigate = useNavigate(); //!private route - return location
+
+
+
+    //! Redirect the page.
+    const from = location.state?.from?.pathname || '/';
+
+
+
 
 
     //! Own making handleLogin -73.2,NOD.
@@ -26,6 +36,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user)
                 toast.success('User Login Successfully.')
+                navigate(from, { replace: true });
             })
 
             .catch(error => {

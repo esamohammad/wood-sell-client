@@ -9,10 +9,11 @@ const auth = getAuth(app)
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null); //!observer set user state.
-
+const [loading,setLoading]=useState(true); //!private route - true means ..initial start is loading.
 // !====================================
 // *create user with email and password
     const createUser = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password);
     }
 // *----------------------------------\\
@@ -23,6 +24,7 @@ const AuthProvider = ({ children }) => {
     // !====================================
     // *Login with email and password after registration
     const signIn = (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password);
     }
     // *----------------------------------\\
@@ -33,6 +35,7 @@ const AuthProvider = ({ children }) => {
     // !====================================
     // *Logout
     const logOut = () => {
+        setLoading(true)
         return signOut(auth);
     }
     // *----------------------------------\\
@@ -56,6 +59,7 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             console.log('user observing');
             setUser(currentUser);
+            setLoading(false);//! user is set then stop loading.
         });
 
         return () => unsubscribe();
@@ -72,7 +76,8 @@ const AuthProvider = ({ children }) => {
         signIn,
         logOut,
         user,
-        updateUser
+        updateUser,
+        loading
     }
 
 
