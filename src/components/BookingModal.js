@@ -60,7 +60,6 @@ const BookingModal = ({ item, setItem }) => {
 
                         <input name="location" type="text" placeholder="Location" className="input input-bordered input-info w-full  " required />
 
-                        <br />
                         <input type="submit" value="Submit" className="btn btn-outline btn-secondary w-full  " />
                     </form>
                 </div>
