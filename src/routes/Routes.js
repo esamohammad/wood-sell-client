@@ -6,7 +6,7 @@ import ErrorPage from "../pages/ErrorPage";
 import Register from "../pages/Register";
 
 import Main from "../layout/Main";
-import Dashboard from "../pages/Dashboard";
+import Dashboard from "../pages/Dashboard/Dashboard";
 import Category from "../pages/Category";
 import Product from "../pages/Product";
 import Faq from '../pages/Faq';
@@ -53,13 +53,13 @@ export const routes = createBrowserRouter([
                 element: <Register></Register>,
             },
             {
-                path: "/dashboard",
-                element: <Dashboard></Dashboard>
-            },
-            {
                 path: "/error",
                 element: <ErrorPage></ErrorPage>,
             },
         ],
     },
+    {
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>
+    }
 ]);

@@ -4,6 +4,7 @@ import useTitle from '../hooks/useTitle';
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 
 
@@ -24,6 +25,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                toast.success('User Login Successfully.')
             })
 
             .catch(error => {

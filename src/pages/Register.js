@@ -1,22 +1,40 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import useTitle from '../hooks/useTitle';
 import  { AuthContext } from '../context/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 
 const Register = () => {
 useTitle('Register');
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUser } = useContext(AuthContext);
+    const [signUpError, setSignUPError] = useState('')
+    //! firebase error.
+
+
+
+
     const handleSignUp = (data) => {
         console.log(data);
+        setSignUPError('');  //! firebase error clear error
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                toast.success('User Created Successfully.')
+                const userInfo = {
+                    displayName: data.name
+                }
+                updateUser(userInfo)
+                    .then(() => { })
+                    .catch(err => console.log(err));
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log(error)
+                setSignUPError(error.message)
+            });
     }
 
     return (
@@ -54,6 +72,12 @@ useTitle('Register');
                     </div>
 
                     <input className='btn btn-outline w-full max-w-xs mt-4' value="Sign Up" type="submit" />
+
+
+
+                    {/* firebase error  */}
+                    {signUpError && <p className='text-red-600'>{signUpError}</p>}
+
                 </form>
                 <p>Already have an account <Link className='text-primary font-bold' to="/login">Please Login</Link></p>
                 <div className="divider">OR</div>
