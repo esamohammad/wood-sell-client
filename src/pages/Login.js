@@ -36,7 +36,7 @@ const Login = () => {
                             {...register("email", {
                                 required: "Email Address is required"
                             })} className="input input-bordered w-full max-w-xs" />
-                        {errors.email && <p className='text-red-600'>{errors.email?.message}</p>}
+                        {errors.email && <p className='text-red-600 text-sm'>{errors.email?.message}</p>}
                     </div>
 
 
@@ -48,10 +48,14 @@ const Login = () => {
                         <input type="password"
                             {...register("password", {
                                 required: "Password is required",
-                                minLength: { value: 6, message: 'Password must be 6 characters or longer' }
+                                minLength: { value: 6, message: 'Password must be 6 characters or longer' },
+                                pattern: {
+                                    value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/,
+                                    message: '1 uppercase,1 lowercase and 1 special character'
+                                }
                             })}
                             className="input input-bordered w-full max-w-xs" />
-                        {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
+                        {errors.password && <p className='text-red-600 text-sm'>{errors.password?.message}</p>}
                         <label className="label"> <span className="label-text"><Link className='text-primary font-bold' to="/register">Forget Password..?</Link></span></label>
                         
                     </div>
