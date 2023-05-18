@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthProvider';
 
 
 
@@ -7,8 +8,8 @@ import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
-
-
+    const { user } = useContext(AuthContext);
+//!Observer the user.
 
 
 
@@ -20,7 +21,9 @@ const Navbar = () => {
         <li><Link to="/faq">FAQ</Link></li>
         <li><Link to="/dashboard">Dashboard</Link></li>
         <li><Link to="/register">Register</Link></li>
-        <li><Link to="/login">Login</Link></li>
+        {user?.uid ?
+            <li><Link to="/login">Logout</Link></li>
+            : <li><Link to="/login">Login</Link></li>}
     </React.Fragment>
 
 
