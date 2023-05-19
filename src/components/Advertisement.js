@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
 import AdvertisementCard from './AdvertisementCard';
 import { useNavigation } from 'react-router-dom';
 import Spinner from '../utils/Spinner';
@@ -7,12 +8,16 @@ const Advertisement = () => {
     const navigation = useNavigation()
 
 
-    const [advertise, setAdvertise] = useState([])
-    useEffect(() => {
-        fetch('http://localhost:5000/advertise')
-            .then(res => res.json())
-            .then(data => setAdvertise(data))
-    }, [])
+
+    //!React Quary- tanstack.
+    const { data: advertise = [] } = useQuery({
+        queryKey: ['advertise'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/advertise');
+            const data = await res.json();
+            return data
+        }
+    })
 
 
 
