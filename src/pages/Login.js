@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 import useTitle from '../hooks/useTitle';
-
+import { BsGoogle } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
 import { toast } from 'react-hot-toast';
-
+import { GoogleAuthProvider } from 'firebase/auth';
 
 
 
@@ -13,7 +13,7 @@ import { toast } from 'react-hot-toast';
 const Login = () => {
     useTitle('Login');
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { signIn } = useContext(AuthContext);
+    const { signIn, providerLogin } = useContext(AuthContext);
     const [loginError, setLoginError] = useState(''); //*firebase-login error showed state.
     const location = useLocation(); //!private route - return location
     const navigate = useNavigate(); //!private route - return location
@@ -44,6 +44,26 @@ const Login = () => {
                 setLoginError(error.message);
             });
     }
+
+
+
+
+
+    //!Google signin with pop up.
+    const googleProvider = new GoogleAuthProvider()
+
+    const handleGoogleSignIn = () => {
+        providerLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.error(error))
+    }
+
+
+
+
 
 
 
@@ -99,7 +119,7 @@ const Login = () => {
                 </form>
                 <p>Are you new..?  <Link className='text-primary font-bold' to="/register">Create new Account</Link></p>
                 <div className="divider">OR</div>
-                <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+                <button onClick={handleGoogleSignIn} className='btn btn-outline w-full'> <BsGoogle className="mr-2 text-3xl" /> CONTINUE WITH GOOGLE </button>
 
             </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import app from '../firebase/Firebase.config'; 
 
 export const AuthContext = createContext();
@@ -10,6 +10,8 @@ const auth = getAuth(app)
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null); //!observer set user state.
 const [loading,setLoading]=useState(true); //!private route - true means ..initial start is loading.
+
+
 // !====================================
 // *create user with email and password
     const createUser = (email, password) => {
@@ -70,6 +72,15 @@ const [loading,setLoading]=useState(true); //!private route - true means ..initi
 
 
 
+    // !====================================
+    // *Google signup
+    const providerLogin = (provider) => {
+        return signInWithPopup(auth, provider);
+    }
+
+
+
+
 
     const authInfo = {
         createUser,
@@ -77,7 +88,8 @@ const [loading,setLoading]=useState(true); //!private route - true means ..initi
         logOut,
         user,
         updateUser,
-        loading
+        loading,
+        providerLogin
     }
 
 
