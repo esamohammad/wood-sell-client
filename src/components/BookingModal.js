@@ -51,6 +51,11 @@ const BookingModal = ({ item, setItem }) => {
                     setItem(null); //!for close the modal.
                     toast.success('Booking confirmed')
                 }
+                
+                else {
+                    toast.error(data.message);
+                    setItem(null); //!for close the modal.
+                }
             })
 
 
@@ -74,9 +79,9 @@ const BookingModal = ({ item, setItem }) => {
 
                         <input name="email" type="email" defaultValue={user?.email} disabled placeholder="Email Address" className="input input-bordered input-info w-full mb-1 " required />
 
-                        <input name="productName" type="text" defaultValue={name} disabled placeholder="Product Name" className="input input-bordered input-info w-full mb-1 " required />
+                        <input name="productName" type="text" value={`${name}`} disabled placeholder="Product Name" className="input input-bordered input-info w-full mb-1 " required />
 
-                        <input name="price" type="number" defaultValue={resalePrice} disabled placeholder="Price" className="input input-bordered input-info w-full mb-1 " required />
+                        <input name="price" type="number" value={`${resalePrice}`}  disabled placeholder="Price" className="input input-bordered input-info w-full mb-1 " required />
 
                         <input name="phone" type="number" placeholder="Phone Number" className="input input-bordered input-info w-full mb-1 " required />
 
