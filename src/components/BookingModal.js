@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../context/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 const BookingModal = ({ item, setItem }) => {
     const { image, category, name, email, resalePrice, availabilty, _id } = item;
-
+    const { user } = useContext(AuthContext)
 
 
 
@@ -29,8 +31,28 @@ const BookingModal = ({ item, setItem }) => {
             _id,
             category
         }
-        console.log(orderData)
-        setItem(null); //for close the modal.
+        // TODO: send data to the server
+        //! and once data is saved then close the modal 
+        //! and display success toast
+       
+
+        //!Post Api Methods
+        fetch('http://localhost:5000/bookings', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(orderData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    setItem(null); //!for close the modal.
+                    toast.success('Booking confirmed')
+                }
+            })
+
 
 
     }
@@ -48,13 +70,13 @@ const BookingModal = ({ item, setItem }) => {
                     <h3 className="text-lg font-bold">{name}</h3>
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 '>
 
-                        <input name="name" type="text" placeholder="Your Name" className="input input-bordered input-info w-full my-1 " required />
+                        <input name="name" type="text" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input input-bordered input-info w-full my-1 " required />
 
-                        <input name="email" type="email" placeholder="Email Address" className="input input-bordered input-info w-full mb-1 " required />
+                        <input name="email" type="email" defaultValue={user?.email} disabled placeholder="Email Address" className="input input-bordered input-info w-full mb-1 " required />
 
-                        <input name="productName" type="text" placeholder="Product Name" className="input input-bordered input-info w-full mb-1 " required />
+                        <input name="productName" type="text" defaultValue={name} disabled placeholder="Product Name" className="input input-bordered input-info w-full mb-1 " required />
 
-                        <input name="price" type="number" placeholder="Price" className="input input-bordered input-info w-full mb-1 " required />
+                        <input name="price" type="number" defaultValue={resalePrice} disabled placeholder="Price" className="input input-bordered input-info w-full mb-1 " required />
 
                         <input name="phone" type="number" placeholder="Phone Number" className="input input-bordered input-info w-full mb-1 " required />
 

@@ -48,7 +48,7 @@ const [loading,setLoading]=useState(true); //!private route - true means ..initi
     // !====================================
     // *Update user profile -name ,photo url
     const updateUser = (userInfo) => {
-        return updateProfile(user, userInfo);
+        return updateProfile(auth.currentUser, userInfo);
     }
     // *----------------------------------\\
 
