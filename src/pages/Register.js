@@ -42,6 +42,9 @@ useTitle('Register');
 
 
 
+    
+
+
     //! Save user to the database - Post api call.
     const saveUser = (name, email) => {
         const user = { name, email };
@@ -54,11 +57,36 @@ useTitle('Register');
         })
             .then(res => res.json())
             .then(data => {
-                console.log('save user', data);
-                navigate('/');
-
+                getUserToken(email);
             })
     }
+
+
+
+
+
+
+
+    //!Jwt token send to server for verification.
+    const getUserToken = email => {
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.accessToken) {
+                    localStorage.setItem('accessToken', data.accessToken);
+                navigate('/');
+            }
+        })
+    }
+
+
+
+
+
+
+
+
+
 
     return (
         <div className='h-[800px] flex justify-center items-center  '>
