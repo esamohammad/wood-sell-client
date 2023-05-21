@@ -13,6 +13,7 @@ import Faq from '../pages/Faq';
 import AllProducts from "../pages/AllProducts";
 import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../layout/DashboardLayout";
+import MyOrders from "../pages/Dashboard/MyOrders";
 
 
 // import AllProduct from "../pages/AllProduct";
@@ -66,7 +67,7 @@ export const routes = createBrowserRouter([
         children: [
             {
                 path: "/dashboard",
-                element: <Dashboard></Dashboard>
+                element: <MyOrders></MyOrders>
             }
         ]
     }
