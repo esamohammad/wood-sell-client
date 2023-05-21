@@ -12,6 +12,7 @@ import Product from "../pages/Product";
 import Faq from '../pages/Faq';
 import AllProducts from "../pages/AllProducts";
 import PrivateRoute from "./PrivateRoute";
+import DashboardLayout from "../layout/DashboardLayout";
 
 
 // import AllProduct from "../pages/AllProduct";
@@ -61,6 +62,12 @@ export const routes = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
+            {
+                path: "/dashboard",
+                element: <Dashboard></Dashboard>
+            }
+        ]
     }
 ]);
