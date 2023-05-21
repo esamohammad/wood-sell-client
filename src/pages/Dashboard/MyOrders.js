@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from './../../context/AuthProvider'
 import { useQuery } from '@tanstack/react-query';
+import Spinner from '../../utils/Spinner';
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
 
@@ -11,7 +12,7 @@ const MyOrders = () => {
 
 
     //!Tanstack quary for myOrders
-    const { data: bookings = [] } = useQuery({
+    const { data: bookings = [], isLoading } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
             const res = await fetch(url, { 
@@ -25,6 +26,17 @@ const MyOrders = () => {
         }
     })
 
+
+
+
+
+    if (isLoading) {
+        return <Spinner></Spinner>
+    }
+
+
+
+
     return (
 
         <div>
@@ -33,13 +45,13 @@ const MyOrders = () => {
                 <table className="table w-full">
                     <thead>
                         <tr>
-                            <th>SL.</th>
-                            <th>Product Image</th>
-                            <th>Product Name</th>
-                            <th>Category</th>
-                            <th>price</th>
-                            <th>payment</th>
-                            <th>Delete</th>
+                            <th className='text-base'>SL.</th>
+                            <th className='text-base'>Product Image</th>
+                            <th className='text-base'>Product Name</th>
+                            <th className='text-base'>Category</th>
+                            <th className='text-base'>price</th>
+                            <th className='text-base'>payment</th>
+                            <th className='text-base'>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
