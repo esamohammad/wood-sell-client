@@ -28,7 +28,6 @@ const BookingModal = ({ item, setItem }) => {
             phone,
             location,
             image,
-            _id,
             category
         }
         // TODO: send data to the server
