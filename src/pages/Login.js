@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
 import { toast } from 'react-hot-toast';
 import { GoogleAuthProvider } from 'firebase/auth';
+import useToken from '../hooks/useToken';
 
 
 
@@ -15,6 +16,12 @@ const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { signIn, providerLogin } = useContext(AuthContext);
     const [loginError, setLoginError] = useState(''); //*firebase-login error showed state.
+
+    //!Jwt custom hook
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail);
+
+
     const location = useLocation(); //!private route - return location
     const navigate = useNavigate(); //!private route - return location
 
@@ -23,6 +30,13 @@ const Login = () => {
     //! Redirect the page.
     const from = location.state?.from?.pathname || '/';
 
+
+
+
+    //!Jwt custom hook
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
 
 
@@ -36,7 +50,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user)
                 toast.success('User Login Successfully.')
-                navigate(from, { replace: true });
+                setLoginUserEmail(data.email);  //!Jwt custom hook
             })
 
             .catch(error => {

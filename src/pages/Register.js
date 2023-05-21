@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import useTitle from '../hooks/useTitle';
 import  { AuthContext } from '../context/AuthProvider';
 import { toast } from 'react-hot-toast';
+import useToken from '../hooks/useToken';
 
 
 const Register = () => {
@@ -12,8 +13,22 @@ useTitle('Register');
     const { createUser, updateUser } = useContext(AuthContext);
     const [signUpError, setSignUPError] = useState('')
     //! firebase error.
+
+    //!JWT custom hook
+    const [createdUserEmail, setCreatedUserEmail] = useState('')
+    const [token] = useToken(createdUserEmail);
+
+
     //! *** redirect to home page.
     const navigate = useNavigate();
+
+
+    //!JWT custom hook
+    if (token) {
+        navigate('/');
+    }
+
+
 
 
 
@@ -42,7 +57,7 @@ useTitle('Register');
 
 
 
-    
+
 
 
     //! Save user to the database - Post api call.
@@ -57,7 +72,7 @@ useTitle('Register');
         })
             .then(res => res.json())
             .then(data => {
-                getUserToken(email);
+                setCreatedUserEmail(email);
             })
     }
 
@@ -67,17 +82,7 @@ useTitle('Register');
 
 
 
-    //!Jwt token send to server for verification.
-    const getUserToken = email => {
-        fetch(`http://localhost:5000/jwt?email=${email}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.accessToken) {
-                    localStorage.setItem('accessToken', data.accessToken);
-                navigate('/');
-            }
-        })
-    }
+
 
 
 
