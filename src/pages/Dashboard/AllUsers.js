@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Spinner from '../../utils/Spinner';
-// import { FcPortraitMode, FcTodoList } from "react-icons/fc";
+import { toast } from 'react-hot-toast';
+
+
 
 
 
@@ -17,7 +19,7 @@ const AllUsers = () => {
 
     // !=================================
     // !React quary- users data get or fetch
-    const { data: users = [], isLoading } = useQuery({
+    const { data: users = [], isLoading ,refetch} = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/users');
@@ -28,17 +30,30 @@ const AllUsers = () => {
 
 
 
+
+
+
+    const handleMakeAdmin= id => {
+        fetch(`http://localhost:5000/users/admin/${id}`,{
+            method: 'PUT'
+        })
+        .then(res=>res.json())
+        .then(data => {
+            if (data.modifiedCount > 0) {
+                toast.success(`Make Admin Successfully.`)
+                refetch();
+            }
+        })
+    }
+
+
     if (isLoading) {
         return <Spinner></Spinner>
     }
 
-
-
-
-
     return (
         <div>
-            <h3 className="text-3xl mb-5 text-center font-bold mt-2 text-primary ">All Users: {users.length} </h3>
+            <h3 className="text-3xl mb-5 text-center font-bold mt-2 text-primary ">All Buyers: {users.length} </h3>
 
             {/* //!table start */}
             <table className="table w-full">
@@ -68,7 +83,7 @@ const AllUsers = () => {
                             <td>{user.name}</td>
                             <td>{user.email}</td>
                             <td>
-                                <button className='btn btn-primary btn-sm hover:bg-secondary  text-white'>Make Admin</button>
+                                {user?.role !== 'admin' &&<button onClick={()=>handleMakeAdmin(user._id)} className='btn btn-primary btn-sm hover:bg-secondary  text-white'>Make Admin</button>}
                             </td>
                             <td>
                                 <button className='btn bg-red-500 hover:bg-red-700 text-white btn-xs'>Delete</button>
