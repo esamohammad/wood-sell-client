@@ -7,10 +7,10 @@ import useAdmin from '../hooks/useAdmin';
 
 const AdminRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
-    const[isAdmin]=useAdmin(user?.email);
+    const [isAdmin, isAdminLoading] = useAdmin(user?.email); //!isAdminLoading
     const location = useLocation();
 
-    if (loading) {
+    if (loading || isAdminLoading) {  
         return <Spinner></Spinner>
         // <progress className="progress w-56"></progress>
     }
