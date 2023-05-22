@@ -3,6 +3,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Spinner from '../../../utils/Spinner';
 
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+
 
 
 
@@ -43,6 +46,35 @@ const conditions = [
 
 
 
+//*=====================================\\
+//!verified of product array.(boolean value)
+const verified = [
+    {
+        id: 1,
+        "value": "true",
+    },
+    {
+        id: 2,
+        "value": "false",
+    }
+]
+//*=====================================\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //*=====================================\\
@@ -52,8 +84,16 @@ const AddProduct = () => {
 
 
 
+
     //!imgbb_key
     const imageHostKey = process.env.REACT_APP_imgbb_key;
+
+
+
+
+
+    //!navigate to manage products page when post is successful.
+    const navigate = useNavigate();
 
 
 
@@ -78,7 +118,7 @@ const AddProduct = () => {
     //!Handle Submit onclick event function.
     //!Upload image to image hosting server imgbb and get image url-VVI***
     const handleAddDoctor = data => {
-        const image = data.productImage[0];
+        const image = data.image[0];
         const formData = new FormData();
         formData.append('image', image);
         const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`
@@ -90,6 +130,36 @@ const AddProduct = () => {
             .then(imgData => {
                 if (imgData.success) {
                     console.log(imgData.data.url)
+                    const product = {
+                        name: data.productName,
+                        image: imgData.data.url,
+                        category: data.categoryName,
+                        location: data.location,
+                        condition: data.condition,
+                        resalePrice: data.resellPrice,
+                        originalPrice: data.originalPrice,
+                        usedYear: data.usedYear,
+                        sellerName: data.sellerName,
+                        verified: data.verification,
+                        postedTime: data.postingDate,
+                    }
+
+
+                    //! save product information to the database
+                    fetch('http://localhost:5000/products', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                            authorization: `bearer ${localStorage.getItem('accessToken')}`
+                        },
+                        body: JSON.stringify(product)
+                    })
+                        .then(res => res.json())
+                        .then(result => {
+                            console.log(result);
+                            toast.success(`${data.productName} is added successfully`);
+                            navigate('/dashboard/manageproducts')
+                        })
                 }
             })
     }
@@ -129,7 +199,7 @@ const AddProduct = () => {
 
     return (
         <div>
-            <div className='w-full p-4'>
+            <div className='w-full px-4'>
                 <h3 className="text-3xl mb-5 text-center font-bold mt-2 text-primary ">Add Product </h3>
                 <form onSubmit={handleSubmit(handleAddDoctor)}>
 
@@ -236,7 +306,10 @@ const AddProduct = () => {
                         {/* //!select category. */}
                         <div className="form-control w-full max-w-xs mx-auto">
                             <label className="label"> <span className="label-text font-bold">Select Category</span> </label>
-                            <select   {...register('categoryName')} className="select select-sm select-primary w-full max-w-xs ">
+                            <select   {...register('categoryName', {
+                                required: "Please select a category"
+                            })} className="select select-sm select-primary w-full max-w-xs ">
+                                {errors.categoryName && <p className='text-red-500 text-sm'>{errors.categoryName.message}</p>}
                                 {
                                     categoryNames.map(categoryName => <option
                                         key={categoryName._id}
@@ -245,20 +318,53 @@ const AddProduct = () => {
                                 }
 
                             </select>
+
                         </div>
+
+
+
+
+                        {/* //!verified check. */}
+                        <div className="form-control w-full max-w-xs mx-auto">
+                            <label className="label"> <span className="label-text font-bold">Please Verify</span> </label>
+                            <select   {...register('verification', {
+                                required: "Please Verify"
+                            })} className="select select-sm select-primary w-full max-w-xs ">
+                                {errors.verification && <p className='text-red-500 text-sm'>{errors.verification.message}</p>}
+                                {
+                                    verified.map(v => <option
+                                        key={v.id}
+                                        value={v.value}
+                                    >{v.value}</option>)
+                                }
+
+                            </select>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                     </div>
 
                     <div>
 
-                        {/* //!Product Name */}
+                        {/* //!Product Image */}
                         <div className="form-control w-full mt-5 grid grid-cols-1 mx-auto">
                             <label className="label"> <span className="label-text font-bold">Upload Product Image</span></label>
-                            <input type="file" {...register("productImage", {
+                            <input type="file" {...register("image", {
                                 required: "Product Image is Required"
                             })} className="file-input file-input-bordered file-input-success max-w-full "/>
-                            {errors.productImage && <p className='text-red-500 text-sm'>{errors.productImage.message}</p>}
+                            {errors.image && <p className='text-red-500 text-sm'>{errors.image.message}</p>}
                         </div>
                     </div>
 

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Navbar from './../components/Navbar'
 import { Link, Outlet } from 'react-router-dom';
-import { FaUsers, FaTasks, FaRegPlusSquare } from 'react-icons/fa';
+import { FaUsers, FaTasks, FaRegPlusSquare, FaDollyFlatbed } from 'react-icons/fa';
 import { AuthContext } from '../context/AuthProvider';
 import useAdmin from '../hooks/useAdmin';
 
@@ -30,6 +30,8 @@ const DashboardLayout = () => {
 
 
                                 <li className=' text-lg font-bold text-secondary-focus mb-0.5'><Link to="/dashboard/addproduct"><span className='text-indigo-600 '><FaRegPlusSquare /></span>Add Product</Link></li>
+
+                                <li className=' text-lg font-bold text-secondary-focus mb-0.5'><Link to="/dashboard/manageproducts"><span className='text-indigo-600 '><FaDollyFlatbed /></span>Manage Products</Link></li>
                             </>
                         }
                     </ul>

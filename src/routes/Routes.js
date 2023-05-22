@@ -17,6 +17,7 @@ import MyOrders from "../pages/Dashboard/MyOrders";
 import AllUsers from "../pages/Dashboard/AllUsers";
 import AdminRoute from "./AdminRoute";
 import AddProduct from "../pages/Dashboard/AddProduct/AddProduct";
+import ManageProduct from "../pages/Dashboard/ManageProduct/ManageProduct";
 
 
 // import AllProduct from "../pages/AllProduct";
@@ -79,6 +80,10 @@ export const routes = createBrowserRouter([
             {
                 path: "/dashboard/addproduct",
                 element: <AdminRoute><AddProduct></AddProduct></AdminRoute>
+            },
+            {
+                path: "/dashboard/manageproducts",
+                element: <AdminRoute><ManageProduct></ManageProduct></AdminRoute>
             }
         ]
     }
