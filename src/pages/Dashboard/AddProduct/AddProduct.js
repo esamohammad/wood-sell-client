@@ -52,8 +52,8 @@ const AddProduct = () => {
 
 
 
-
-
+    //!imgbb_key
+    const imageHostKey = process.env.REACT_APP_imgbb_key;
 
 
 
@@ -76,9 +76,27 @@ const AddProduct = () => {
 
     //*=====================================\\
     //!Handle Submit onclick event function.
+    //!Upload image to image hosting server imgbb and get image url-VVI***
     const handleAddDoctor = data => {
-        console.log(data);
+        const image = data.productImage[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgData => {
+                if (imgData.success) {
+                    console.log(imgData.data.url)
+                }
+            })
     }
+//*************************************************************\\
+// ! Getting image url from imagebb hosting server
+//*************************************************************\\
+
 
 
 
