@@ -37,7 +37,7 @@ const Advertisement = () => {
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-7 my-10'>
                 {
                     advertise.map((add) => <AdvertisementCard
-                        key={add.id}
+                        key={add._id}
                         add={add}></AdvertisementCard>)
                 }
             </div>
