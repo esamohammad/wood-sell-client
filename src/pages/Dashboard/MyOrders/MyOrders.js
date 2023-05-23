@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { AuthContext } from './../../context/AuthProvider'
+import { AuthContext } from '../../../context/AuthProvider'
 import { useQuery } from '@tanstack/react-query';
-import Spinner from '../../utils/Spinner';
+import Spinner from '../../../utils/Spinner';
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
 
@@ -15,7 +15,7 @@ const MyOrders = () => {
     const { data: bookings = [], isLoading } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
-            const res = await fetch(url, { 
+            const res = await fetch(url, {
                 //!jwt verification
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -59,9 +59,9 @@ const MyOrders = () => {
                             bookings &&
 
                             bookings?.map((booking, i) => <tr key={booking._id}>
-                                <th>{i + 1}</th> 
+                                <th>{i + 1}</th>
 
-                                <td> 
+                                <td>
                                     <div className="flex items-center space-x-3">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-12 h-12">
@@ -71,7 +71,7 @@ const MyOrders = () => {
                                     </div>
                                 </td>
 
-                                <td>{booking.productName}</td> 
+                                <td>{booking.productName}</td>
 
                                 <td>{booking.category}</td>
                                 <td><span className='mr-1 text-base font-black'>৳</span>{booking.price}</td>

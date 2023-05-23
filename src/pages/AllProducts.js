@@ -12,7 +12,7 @@ const AllProducts = () => {
 
     const { _id } = products;
     const [item, setItem] = useState(null);
-useTitle("All Products");
+    useTitle("All Products");
 
 
 

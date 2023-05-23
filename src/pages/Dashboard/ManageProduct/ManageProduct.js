@@ -1,12 +1,42 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import Spinner from '../../../utils/Spinner';
+import ConfirmationModal from '../../../components/ConfirmationModal';
 
 
 
 
 
 const ManageProduct = () => {
+
+    // !Deleting Product State
+    const [deletingProduct, setDeletingProduct] = useState(null);
+
+
+
+
+
+
+    // !Close Modal Function
+    const closeModal = () => {
+        setDeletingProduct(null);
+    }
+
+
+
+
+    // !success Action on Modal
+    const handleDeleteProduct = p => {
+        console.log(p);
+    }
+
+
+
+
+
+
+
+
 
     // !================================================
     // !React useQuary
@@ -31,6 +61,20 @@ const ManageProduct = () => {
     if (isLoading) {
         return <Spinner />;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -72,15 +116,36 @@ const ManageProduct = () => {
                                 <td><span className='mr-1 text-base font-black'>৳</span>{p.resalePrice}</td>
                                 <td>{p.location}</td>
                                 <td>{p.category}</td>
-                                <td><button className="btn bg-red-500 hover:bg-red-700 text-white btn-xs">Delete</button></td>
+                                <td>
+
+                                    <label onClick={() => setDeletingProduct(p)} htmlFor="confirmation-modal" className="btn bg-red-500 hover:bg-red-700 text-white btn-xs">Delete</label>
+
+                                </td>
                             </tr>)
                         }
                     </tbody>
                 </table>
             </div>
+            <span></span>
 
+            {
 
+                deletingProduct &&
 
+                <ConfirmationModal
+                    title={`Are you sure you want to delete?`}
+
+                    message={`If you delete this ${deletingProduct.name}. We will never be able to recover this product. It will be  permanently delete from the database.`}
+
+                        closeModal={closeModal}
+
+                        successAction={handleDeleteProduct}
+
+                        modalData={deletingProduct}
+
+                    ></ConfirmationModal>
+
+            }
 
 
 
