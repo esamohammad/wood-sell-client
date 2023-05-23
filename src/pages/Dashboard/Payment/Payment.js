@@ -1,6 +1,8 @@
 import { loadStripe } from '@stripe/stripe-js';
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import CheckoutForm from './CheckoutForm';
+import { Elements } from '@stripe/react-stripe-js';
 
 
 
@@ -33,7 +35,7 @@ const Payment = () => {
 
             <p className="text-lg text-center mb-20">Please pay <span className='mr-1 text-base font-black'>৳</span><strong>{price}</strong> for your product of {category} Category.</p>
             
-            <p className="text-xl text-center mb-20 text-secondary font-bold">Your Payment Information is here...</p>
+            <p className="text-xl text-center mb-2 text-secondary font-bold">Your Payment Information is here...</p>
             
 
 
@@ -41,7 +43,11 @@ const Payment = () => {
 
 
 
-
+            <div className='w-full lg:w-3/5 mx-auto border-2 p-10 shadow-lg rounded-lg bg-gray-100 border-primary'>
+                <Elements stripe={stripePromise}>
+                    <CheckoutForm />
+                </Elements>
+            </div>
 
 
 
