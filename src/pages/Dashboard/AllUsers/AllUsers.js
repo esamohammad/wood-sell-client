@@ -66,6 +66,7 @@ const AllUsers = () => {
                         <th className='text-base'>Image</th>
                         <th className='text-base'>Name</th>
                         <th className='text-base'>Email</th>
+                        <th className='text-base'>Mobile</th>
                         <th className='text-base'>Admin Action</th>
                         <th className='text-base'>Delete</th>
                     </tr>
@@ -85,6 +86,7 @@ const AllUsers = () => {
                             </td>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
+                            <td>{user.mobile}</td>
                             <td>
                                 {user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-primary btn-sm hover:bg-secondary  text-white'>Make Admin</button>}
                             </td>
