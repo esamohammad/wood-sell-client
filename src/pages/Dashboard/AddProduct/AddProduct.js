@@ -140,7 +140,7 @@ const AddProduct = () => {
                         originalPrice: data.originalPrice,
                         usedYear: data.usedYear,
                         sellerName: data.sellerName,
-                        verified: data.verification,
+                        verified: JSON.parse(data.verification), //**** convert string to boolean value */
                         postedTime: data.postingDate,
                     }
 
@@ -330,13 +330,8 @@ const AddProduct = () => {
                             <select   {...register('verification', {
                                 required: "Please Verify"
                             })} className="select select-sm select-primary w-full max-w-xs ">
-                                {errors.verification && <p className='text-red-500 text-sm'>{errors.verification.message}</p>}
-                                {
-                                    verified.map(v => <option
-                                        key={v.id}
-                                        value={v.value}
-                                    >{v.value}</option>)
-                                }
+                                <option>true</option>
+                                <option>false</option>
 
                             </select>
                         </div>
