@@ -18,6 +18,7 @@ import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute";
 import AddProduct from "../pages/Dashboard/AddProduct/AddProduct";
 import ManageProduct from "../pages/Dashboard/ManageProduct/ManageProduct";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 
 // import AllProduct from "../pages/AllProduct";
@@ -26,6 +27,7 @@ export const routes = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
@@ -68,6 +70,7 @@ export const routes = createBrowserRouter([
     {
         path: "/dashboard",
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/dashboard",
@@ -84,7 +87,12 @@ export const routes = createBrowserRouter([
             {
                 path: "/dashboard/manageproducts",
                 element: <AdminRoute><ManageProduct></ManageProduct></AdminRoute>
-            }
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <AdminRoute><Payment></Payment></AdminRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
+            },
         ]
     }
 ]);

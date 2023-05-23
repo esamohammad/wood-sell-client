@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthProvider'
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../../../utils/Spinner';
+import { Link } from 'react-router-dom';
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
 
@@ -76,8 +77,19 @@ const MyOrders = () => {
                                 <td>{booking.category}</td>
                                 <td><span className='mr-1 text-base font-black'>৳</span>{booking.price}</td>
                                 <td>
-                                    <button className='btn btn-primary btn-sm hover:bg-secondary  text-white'>Pay Now</button>
+                                    {
+                                        booking.price && !booking.paid && <Link
+                                            to={`/dashboard/payment/${booking._id}`}
+                                        >
+                                            <button className='btn btn-primary  hover:bg-secondary  text-white btn-xs'>Pay Now</button>
+                                        </Link>
+                                    }
+                                    {
+                                        booking.price && booking.paid && <span className='text-primary'>Paid</span>
+                                    }
+
                                 </td>
+                                
                                 <td>
                                     <button className='btn bg-red-500 hover:bg-red-700 text-white btn-xs'>Delete</button>
                                 </td>
