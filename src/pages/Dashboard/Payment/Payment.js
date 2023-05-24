@@ -8,22 +8,12 @@ import { Elements } from '@stripe/react-stripe-js';
 
 //!stripe
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
-
 console.log(stripePromise);
-
-
-
-
-
-
-
-
-
 
 
 const Payment = () => {
     const booking = useLoaderData();
-    const { productName, price, location, category, image } = booking;
+    const { productName, price, category } = booking;
 
 
 

@@ -85,11 +85,11 @@ const MyOrders = () => {
                                         </Link>
                                     }
                                     {
-                                        booking.price && booking.paid && <span className='text-primary'>Paid</span>
+                                        booking.price && booking.paid && <span className='text-green-500'>Paid</span>
                                     }
 
                                 </td>
-                                
+
                                 <td>
                                     <button className='btn bg-red-500 hover:bg-red-700 text-white btn-xs'>Delete</button>
                                 </td>
