@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import Navbar from './../components/Navbar'
 import { Link, Outlet } from 'react-router-dom';
-import { FaUsers, FaTasks, FaRegPlusSquare, FaDollyFlatbed, FaMoneyBillWave } from 'react-icons/fa';
+import { FaUsers, FaTasks, FaRegPlusSquare, FaDollyFlatbed, FaMoneyBillWave, FaPersonBooth } from 'react-icons/fa';
+import { FcDebt } from "react-icons/fc";
 import { AuthContext } from '../context/AuthProvider';
 import useAdmin from '../hooks/useAdmin';
 
@@ -34,6 +35,10 @@ const DashboardLayout = () => {
                                 <li className=' text-lg font-bold text-secondary-focus mb-0.5'><Link to="/dashboard/manageproducts"><span className='text-indigo-600 '><FaDollyFlatbed /></span>Manage Products</Link></li>
 
                                 <li className=' text-lg font-bold text-secondary-focus mb-0.5'><Link to="/dashboard/paymentsList"><span className='text-indigo-600 '><FaMoneyBillWave /></span>Payment List</Link></li>
+
+                                <li className=' text-lg font-bold text-secondary-focus mb-0.5'><Link to="/dashboard/allSeller"><span className='text-indigo-600 '><FaPersonBooth /></span>Seller List</Link></li>
+
+                                <li className=' text-lg font-bold text-secondary-focus mb-0.5'><Link to="/dashboard/allBuyer"><span className='text-indigo-600 '><FcDebt /></span>Buyer List</Link></li>
                             </>
                         }
                     </ul>

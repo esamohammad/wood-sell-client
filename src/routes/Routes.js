@@ -4,7 +4,6 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import ErrorPage from "../pages/ErrorPage";
 import Register from "../pages/Register";
-
 import Main from "../layout/Main";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Category from "../pages/Category";
@@ -20,6 +19,8 @@ import AddProduct from "../pages/Dashboard/AddProduct/AddProduct";
 import ManageProduct from "../pages/Dashboard/ManageProduct/ManageProduct";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentList from "../pages/Dashboard/Payment/PaymentList";
+import AllSeller from "../pages/Dashboard/AllSeller/AllSeller";
+import AllBuyers from "../pages/Dashboard/AllBuyer/AllBuyer";
 
 
 // import AllProduct from "../pages/AllProduct";
@@ -98,6 +99,16 @@ export const routes = createBrowserRouter([
                 path: '/dashboard/paymentsList',
                 element: <AdminRoute><PaymentList></PaymentList></AdminRoute>,
                 loader: () => fetch("http://localhost:5000/payments"),
+            },
+            {
+                path: '/dashboard/allSeller',
+                element: <AdminRoute><AllSeller></AllSeller>></AdminRoute>,
+                
+            },
+            {
+                path: '/dashboard/allBuyer',
+                element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>,
+                
             }
         ]
     }
