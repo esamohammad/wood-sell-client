@@ -1,8 +1,10 @@
 import { loadStripe } from '@stripe/stripe-js';
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData , useNavigation} from 'react-router-dom';
+
 import CheckoutForm from './CheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
+import Spinner from '../../../utils/Spinner';
 
 
 
@@ -14,10 +16,12 @@ console.log(stripePromise);
 const Payment = () => {
     const booking = useLoaderData();
     const { productName, price, category } = booking;
+    const navigation = useNavigation();
 
 
-
-
+    if (navigation.state === "loading") {
+        return <Spinner></Spinner>
+    }
     return (
         <div>
             <h3 className="text-3xl mb-2 text-center font-bold mt-2 text-primary ">Payment for <span className='text-secondary '>{productName}</span></h3>

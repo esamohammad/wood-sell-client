@@ -19,6 +19,7 @@ import AdminRoute from "./AdminRoute";
 import AddProduct from "../pages/Dashboard/AddProduct/AddProduct";
 import ManageProduct from "../pages/Dashboard/ManageProduct/ManageProduct";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import PaymentList from "../pages/Dashboard/Payment/PaymentList";
 
 
 // import AllProduct from "../pages/AllProduct";
@@ -92,7 +93,12 @@ export const routes = createBrowserRouter([
                 path: '/dashboard/payment/:id',
                 element: <AdminRoute><Payment></Payment></AdminRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
-            },
+            }, ,
+            {
+                path: '/dashboard/paymentsList',
+                element: <AdminRoute><PaymentList></PaymentList></AdminRoute>,
+                loader: () => fetch("http://localhost:5000/payments"),
+            }
         ]
     }
 ]);
