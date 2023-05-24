@@ -1,12 +1,16 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigation } from 'react-router-dom';
+import Spinner from '../../../utils/Spinner';
 
 const PaymentList = () => {
     const payments = useLoaderData();
+    const navigation = useNavigation(); //!loading Spinner.
 
 
 
-
+    if (navigation.state === "loading") { //!loading Spinner.
+        return <Spinner></Spinner>
+    }
     return (
         <div>
             <h3 className="text-3xl mb-5 text-center font-bold mt-2 text-primary ">Payments List: {payments.length} </h3>
