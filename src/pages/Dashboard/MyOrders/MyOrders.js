@@ -3,9 +3,13 @@ import { AuthContext } from '../../../context/AuthProvider'
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../../../utils/Spinner';
 import { Link } from 'react-router-dom';
-const MyOrders = () => {
-    const { user } = useContext(AuthContext);
+import { useState } from 'react';
+import useTitle from '../../../hooks/useTitle';
+import ConfirmationModal from '../../../components/ConfirmationModal';
 
+const MyOrders = () => {
+    useTitle('MyOrders')
+    const { user } = useContext(AuthContext);
 
     //!Email quary for myOrders
     const url = `http://localhost:5000/bookings?email=${user?.email}`;
@@ -27,14 +31,22 @@ const MyOrders = () => {
         }
     })
 
+    // !Deleting Booking State
+    const [deletingBooking, setDeletingBooking] = useState(null);
 
+    // !Close Modal Function
+    const closeModal = () => {
+        setDeletingBooking(null);
+    }
 
-
+    // !success Action on Modal
+    const handleDeleteBooking = booking => {
+        console.log(booking);
+    }
 
     if (isLoading) {
         return <Spinner></Spinner>
     }
-
 
 
 
@@ -91,13 +103,36 @@ const MyOrders = () => {
                                 </td>
 
                                 <td>
-                                    <button className='btn bg-red-500 hover:bg-red-700 text-white btn-xs'>Delete</button>
+
+                                    <label onClick={() => setDeletingBooking(booking)} htmlFor="confirmation-modal" className="btn bg-red-500 hover:bg-red-700 text-white btn-xs">Delete</label>
+
                                 </td>
                             </tr>)
                         }
                     </tbody>
                 </table>
             </div>
+            {
+
+                deletingBooking &&
+
+                <ConfirmationModal
+                    title={`Are you sure you want to delete?`}
+
+                    message={`Be careful we have not any other information of this Payment history of 
+                     ${deletingBooking.productName}.It will be  permanently delete from the database.`}
+
+                    closeModal={closeModal}
+
+                    successAction={handleDeleteBooking}
+
+                    modalData={deletingBooking}
+
+                    successButtonName="Delete"
+
+                ></ConfirmationModal>
+
+            }
         </div>
     );
 };
