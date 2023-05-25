@@ -1,10 +1,35 @@
 import React from 'react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 import Spinner from '../../../utils/Spinner';
+import useTitle from '../../../hooks/useTitle';
+import { useState } from 'react';
+import ConfirmationModal from '../../../components/ConfirmationModal';
 
 const PaymentList = () => {
+    useTitle('PaymentList')
+
     const payments = useLoaderData();
     const navigation = useNavigation(); //!loading Spinner.
+
+
+    // !Deleting Payment State
+    const [deletingPayment, setDeletingPayment] = useState(null);
+
+
+
+    // !Close Modal Function
+    const closeModal = () => {
+        setDeletingPayment(null);
+    }
+
+
+
+    // !success Action on Modal
+    const handleDeletePayment = payment => {
+        console.log(payment);
+    }
+
+
 
 
 
@@ -37,13 +62,50 @@ const PaymentList = () => {
                                 <td>{payment.price}</td>
                                 <td>{payment.email}</td>
                                 <td>
-                                    <button className='btn bg-red-500 hover:bg-red-700 text-white btn-xs'>Delete</button>
+                                    <label onClick={() => setDeletingPayment(payment)} htmlFor="confirmation-modal" className="btn bg-red-500 hover:bg-red-700 text-white btn-xs">Delete</label>
                                 </td>
                             </tr>)
                         }
                     </tbody>
                 </table>
             </div>
+
+
+            {
+
+                deletingPayment &&
+
+                <ConfirmationModal
+                    title={`Are you sure you want to delete?`}
+
+                    message={`Be careful we have not any other information of this Payment history of  ${deletingPayment.email}.It will be  permanently delete from the database.`}
+
+                    closeModal={closeModal}
+
+                    successAction={handleDeletePayment}
+
+                    modalData={deletingPayment}
+
+                    successButtonName="Delete"
+
+                ></ConfirmationModal>
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
     );
 };

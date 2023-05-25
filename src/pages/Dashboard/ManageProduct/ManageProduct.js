@@ -3,12 +3,14 @@ import React, { useState } from 'react';
 import Spinner from '../../../utils/Spinner';
 import ConfirmationModal from '../../../components/ConfirmationModal';
 import { toast } from 'react-hot-toast';
+import useTitle from '../../../hooks/useTitle';
 
 
 
 
 
 const ManageProduct = () => {
+    useTitle('ManageProduct');
 
     // !Deleting Product State
     const [deletingProduct, setDeletingProduct] = useState(null);

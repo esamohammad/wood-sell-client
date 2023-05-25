@@ -5,6 +5,7 @@ import { useLoaderData , useNavigation} from 'react-router-dom';
 import CheckoutForm from './CheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
 import Spinner from '../../../utils/Spinner';
+import useTitle from '../../../hooks/useTitle';
 
 
 
@@ -14,6 +15,7 @@ console.log(stripePromise);
 
 
 const Payment = () => {
+    useTitle('Payment');
     const booking = useLoaderData();
     const { productName, price, category } = booking;
     const navigation = useNavigation();

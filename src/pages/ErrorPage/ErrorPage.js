@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { useNavigate, useRouteError } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 const DisplayError = () => {
+    useTitle('404Error');
     const { logOut } = useContext(AuthContext);
     const error = useRouteError();
     const navigate = useNavigate();
