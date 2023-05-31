@@ -41,7 +41,7 @@ export default function Slider() {
 
                                     you can sell your furniture and buy a new one, Don't be late to get your one,, hurry up...!.
                                 </p>
-                                    <Link to='/product'>
+                                    <Link to='/allproducts'>
                                         <button className="bg-gradient-to-r from-purple-400 to-sky-500 px-3 py-2 md:px-4 md:py-3 rounded-md">
                                             Show Products
                                         </button>
@@ -67,7 +67,7 @@ export default function Slider() {
 
                                     we are offering furniture like new in your budget, Don't be late to get your one,, hurry up...!.
                                 </p>
-                                    <Link to='/product'>
+                                    <Link to='/allproducts'>
                                         <button className="bg-gradient-to-r from-purple-400 to-sky-500 px-3 py-2 md:px-4 md:py-3 rounded-md">
                                             Show Products
                                         </button>
@@ -94,7 +94,7 @@ export default function Slider() {
 
                                     we are offering huge collection of furniture, Don't be late to get your one,, hurry up...!.
                                 </p>
-                                    <Link to='/product'>
+                                    <Link to='/allproducts'>
                                         <button className="bg-gradient-to-r from-purple-400 to-sky-500 px-3 py-2 md:px-4 md:py-3 rounded-md">
                                             Show Products
                                         </button>
@@ -120,7 +120,7 @@ export default function Slider() {
 
                                     we are offering furniture like new in your budget, Don't be late to get your one,, hurry up...!.
                                 </p>
-                                <Link to='/product'>
+                                    <Link to='/allproducts'>
                                     <button className="bg-gradient-to-r from-purple-400 to-sky-500 px-3 py-2 md:px-4 md:py-3 rounded-md">
                                        Show Products
                                     </button>

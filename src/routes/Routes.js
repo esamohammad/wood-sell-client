@@ -1,15 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "../pages/Home";
-
-import Login from "../pages/Login";
-import ErrorPage from "../pages/ErrorPage";
-import Register from "../pages/Register";
+import Home from "../pages/HomePage/Home";
+import Login from "../pages/LoginPage/Login";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Register from "../pages/RegisterPage/Register";
 import Main from "../layout/Main";
 import Dashboard from "../pages/Dashboard/Dashboard";
-import Category from "../pages/Category";
-import Product from "../pages/Product";
-import Faq from '../pages/Faq';
-import AllProducts from "../pages/AllProducts";
+import Category from "../pages/HomePage/Category/Category";
+import Product from "../pages/HomePage/Category/Product";
+import Faq from '../pages/Faq/Faq';
+import AllProducts from "../pages/AllProducts/AllProducts";
 import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../layout/DashboardLayout";
 import MyOrders from "../pages/Dashboard/MyOrders/MyOrders";
@@ -102,7 +101,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/dashboard/allSeller',
-                element: <AdminRoute><AllSeller></AllSeller>></AdminRoute>,
+                element: <AdminRoute><AllSeller></AllSeller></AdminRoute>,
                 
             },
             {

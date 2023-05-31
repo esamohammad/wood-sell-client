@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
-import Spinner from '../utils/Spinner';
+import Spinner from '../../utils/Spinner';
 import AllProductsCard from './AllProductsCard';
-import useTitle from '../hooks/useTitle';
-import BookingModal from '../components/BookingModal';
+import useTitle from '../../hooks/useTitle';
+import BookingModal from '../../components/BookingModal';
 
 const AllProducts = () => {
 

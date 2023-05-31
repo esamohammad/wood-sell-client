@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
-import useTitle from '../hooks/useTitle';
+import useTitle from '../../hooks/useTitle';
 import { BsGoogle } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthProvider';
+import { AuthContext } from '../../context/AuthProvider';
 import { toast } from 'react-hot-toast';
 import { GoogleAuthProvider } from 'firebase/auth';
-import useToken from '../hooks/useToken';
+import useToken from '../../hooks/useToken';
 
 
 
@@ -85,7 +85,7 @@ const Login = () => {
 
 
     return (
-      
+
         <div className='h-[800px] flex justify-center items-center'>
             <div className='w-96 p-7 border-secondary border-8 rounded-2xl'>
                 <h2 className='text-4xl text-center font-bold'>Login</h2>
@@ -120,7 +120,7 @@ const Login = () => {
                             className="input input-bordered w-full max-w-xs" />
                         {errors.password && <p className='text-red-600 text-sm'>{errors.password?.message}</p>}
                         <label className="label"> <span className="label-text"><Link className='text-primary font-bold' to="/register">Forget Password..?</Link></span></label>
-                        
+
                     </div>
 
                     <input className='btn btn-outline w-full' value="Login" type="submit" />

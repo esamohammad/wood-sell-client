@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import CategoryCard from './CategoryCard';
-import { AuthContext } from '../context/AuthProvider';
-import Spinner from '../utils/Spinner';
+import { AuthContext } from '../../../context/AuthProvider';
+import Spinner from '../../../utils/Spinner';
 import axios from 'axios';
 
 const CategoriesInfo = () => {

@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Slider from '../components/Hero-Slider';
+import Slider from './Hero-Slider';
 
-import CategoriesInfo from '../components/CategoriesInfo';
-import Advertisement from '../components/Advertisement';
-import Extrasection from '../components/Extrasection';
-import WhyUs from '../components/WhyUs';
-import HeroBanner from '../components/HeroBanner';
-import useTitle from '../hooks/useTitle';
+import CategoriesInfo from './Category/CategoriesInfo';
+import Advertisement from './Advertisement/Advertisement';
+import Extrasection from './Extrasection';
+import WhyUs from './WhyUs';
+import HeroBanner from './HeroBanner';
+import useTitle from '../../hooks/useTitle';
 
 
 
@@ -23,7 +23,7 @@ const Home = () => {
             <Extrasection></Extrasection>
             <HeroBanner></HeroBanner>
             <WhyUs></WhyUs>
-            
+
 
 
 

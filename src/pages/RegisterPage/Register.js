@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import useTitle from '../hooks/useTitle';
-import  { AuthContext } from '../context/AuthProvider';
+import useTitle from '../../hooks/useTitle';
+import { AuthContext } from '../../context/AuthProvider';
 import { toast } from 'react-hot-toast';
-import useToken from '../hooks/useToken';
+import useToken from '../../hooks/useToken';
 
 
 const Register = () => {
-useTitle('Register');
+    useTitle('Register');
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUser } = useContext(AuthContext);
     const [signUpError, setSignUPError] = useState('')
@@ -46,7 +46,7 @@ useTitle('Register');
                 updateUser(userInfo)
                     .then(() => {
                         saveUser(data.name, data.email) //!post api call
-                     })
+                    })
                     .catch(err => console.log(err));
             })
             .catch(error => {
@@ -98,7 +98,7 @@ useTitle('Register');
             <div className='w-96 p-7 border-secondary border-8 rounded-2xl'>
                 <h2 className='text-4xl text-center font-bold'>Sign Up</h2>
                 <form onSubmit={handleSubmit(handleSignUp)}>
-                   
+
                     <div className="form-control w-full max-w-xs">
                         <label className="label"> <span className="label-text">Name</span></label>
                         <input type="text" {...register("name", {
@@ -121,8 +121,10 @@ useTitle('Register');
                         <input type="password" {...register("password", {
                             required: "Password is required",
                             minLength: { value: 6, message: "Password must be 6 characters or longer" },
-                            pattern: { value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, 
-                            message: '1 uppercase,1 lowercase and 1 special character' }
+                            pattern: {
+                                value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/,
+                                message: '1 uppercase,1 lowercase and 1 special character'
+                            }
                         })} className="input input-bordered w-full max-w-xs" />
                         {errors.password && <p className='text-red-500 text-sm '>{errors.password.message}</p>}
                     </div>
