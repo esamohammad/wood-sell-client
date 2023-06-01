@@ -48,7 +48,7 @@ const BookingModal = ({ item, setItem }) => {
                 console.log(data);
                 if (data.acknowledged) {
                     setItem(null); //!for close the modal.
-                    toast.success('Booking confirmed')
+                    toast.success('Booking confirmed Successfully 💖💖')
                 }
                 
                 else {

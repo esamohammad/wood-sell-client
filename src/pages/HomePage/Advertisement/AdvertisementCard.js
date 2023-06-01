@@ -3,7 +3,7 @@ import { Link, useNavigation } from 'react-router-dom';
 import Spinner from '../../../utils/Spinner';
 import { AuthContext } from '../../../context/AuthProvider';
 
-const AdvertisementCard = ({ add }) => {
+const AdvertisementCard = ({ add, setItem }) => {
     const { condition, image, location, name, originalPrice, postedTime, resalePrice, sellerName, usedYear, verified, _id, report } = add;
     const navigation = useNavigation()
     const { user } = useContext(AuthContext)
@@ -53,8 +53,16 @@ const AdvertisementCard = ({ add }) => {
                 </div>
 
 
-
-                <p className='text-secondary text-2xl flex justify-center items-center mt-5'> Please <Link to={'/login'} className="mx-2 text-blue-700">Login</Link> to buy.</p>
+                { 
+                    user?.uid ?
+                    <label
+                    htmlFor="booking-modal"
+                    className="btn btn-outline btn-secondary w-full mt-5"
+                    onClick={() => setItem(add)}
+                >Add To Cart</label>
+                        :
+                        <p className='text-secondary text-2xl flex justify-center items-center mt-5'> Please <Link to={'/login'} className="mx-2 text-blue-700">Login</Link> to buy.</p>
+                }
 
 
             </div>

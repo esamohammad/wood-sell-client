@@ -78,6 +78,11 @@ export const routes = createBrowserRouter([
                 element: <MyOrders></MyOrders>
             },
             {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
+            }, 
+            {
                 path: "/dashboard/allusers",
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
@@ -89,11 +94,6 @@ export const routes = createBrowserRouter([
                 path: "/dashboard/manageproducts",
                 element: <AdminRoute><ManageProduct></ManageProduct></AdminRoute>
             },
-            {
-                path: '/dashboard/payment/:id',
-                element: <AdminRoute><Payment></Payment></AdminRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
-            }, ,
             {
                 path: '/dashboard/paymentsList',
                 element: <AdminRoute><PaymentList></PaymentList></AdminRoute>,

@@ -1,16 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import AdvertisementCard from './AdvertisementCard';
 import { useNavigation } from 'react-router-dom';
 import Spinner from '../../../utils/Spinner';
+import BookingModal from '../../../components/BookingModal';
 
 const Advertisement = () => {
+    const [item, setItem] = useState(null);
     const navigation = useNavigation()
 
 
 
     //!React Quary- tanstack.
-    const { data: advertise = [] } = useQuery({
+    const { data: advertise = [], isLoading, refetch } = useQuery({
         queryKey: ['advertise'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/advertise');
@@ -22,7 +24,7 @@ const Advertisement = () => {
 
 
 
-    if (navigation.state === 'loading') {
+    if (navigation.state === 'loading' || isLoading) {
         return <Spinner></Spinner>
     }
     return (
@@ -38,9 +40,24 @@ const Advertisement = () => {
                 {
                     advertise.map((add) => <AdvertisementCard
                         key={add._id}
+                        setItem={setItem}
                         add={add}></AdvertisementCard>)
                 }
             </div>
+
+
+
+            {item &&
+                <BookingModal
+                    item={item}
+                    setItem={setItem}
+                ></BookingModal>}
+
+
+
+
+
+
 
         </div>
     );
