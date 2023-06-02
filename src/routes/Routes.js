@@ -20,6 +20,7 @@ import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentList from "../pages/Dashboard/Payment/PaymentList";
 import AllSeller from "../pages/Dashboard/AllSeller/AllSeller";
 import AllBuyers from "../pages/Dashboard/AllBuyer/AllBuyer";
+import MySellPost from "../pages/Dashboard/MySellPost/MySellPost";
 
 
 // import AllProduct from "../pages/AllProduct";
@@ -78,18 +79,23 @@ export const routes = createBrowserRouter([
                 element: <MyOrders></MyOrders>
             },
             {
+                path: "/dashboard/mysellpost",
+                element: <MySellPost></MySellPost>
+            },
+            {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
                 loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
             }, 
             {
+                path: "/dashboard/addproduct",
+                element:<AddProduct></AddProduct>
+            },
+            {
                 path: "/dashboard/allusers",
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
-            {
-                path: "/dashboard/addproduct",
-                element: <AdminRoute><AddProduct></AddProduct></AdminRoute>
-            },
+            
             {
                 path: "/dashboard/manageproducts",
                 element: <AdminRoute><ManageProduct></ManageProduct></AdminRoute>

@@ -8,7 +8,7 @@ import useTitle from '../../../hooks/useTitle';
 import ConfirmationModal from '../../../components/ConfirmationModal';
 
 const MyOrders = () => {
-    useTitle('MyOrders')
+    useTitle('Orders')
     const { user } = useContext(AuthContext);
 
     //!Email quary for myOrders

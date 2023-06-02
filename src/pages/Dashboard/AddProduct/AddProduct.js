@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import Spinner from '../../../utils/Spinner';
 
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import { AuthContext } from '../../../context/AuthProvider';
 
 
 
@@ -83,7 +84,7 @@ const AddProduct = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
 
-
+    const { user } = useContext(AuthContext) //! email quary
 
     //!imgbb_key
     const imageHostKey = process.env.REACT_APP_imgbb_key;
@@ -118,6 +119,8 @@ const AddProduct = () => {
     //!Handle Submit onclick event function.
     //!Upload image to image hosting server imgbb and get image url-VVI***
     const handleAddDoctor = data => {
+       
+
         const image = data.image[0];
         const formData = new FormData();
         formData.append('image', image);
@@ -142,6 +145,7 @@ const AddProduct = () => {
                         sellerName: data.sellerName,
                         verified: JSON.parse(data.verification), //**** convert string to boolean value */
                         postedTime: data.postingDate,
+                        email: user?.email ,
                     }
 
 
@@ -158,7 +162,7 @@ const AddProduct = () => {
                         .then(result => {
                             console.log(result);
                             toast.success(`${data.productName} is added successfully`);
-                            navigate('/dashboard/manageproducts')
+                            navigate('/dashboard/mysellpost')
                         })
                 }
             })
