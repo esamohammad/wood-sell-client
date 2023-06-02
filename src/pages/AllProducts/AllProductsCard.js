@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../context/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const AllProductsCard = ({ product, setItem }) => {
+
     const { condition, image, location, name, originalPrice, postedTime, resalePrice, sellerName, usedYear, verified } = product;
+
+
+    const { user } = useContext(AuthContext)
+
+
     return (
         <div>
 
@@ -34,11 +42,16 @@ const AllProductsCard = ({ product, setItem }) => {
                         <p className='font-semibold'>Used For : <span className='font-bold'>{usedYear} Years</span></p>
                     </div>
 
-                    <label
+                    {
+                        user?.uid ?
+                            <label
                         htmlFor="booking-modal"
                         className="btn btn-outline btn-secondary w-full mt-5"
                         onClick={() => setItem(product)}
                     >Add To Cart</label>
+                            :
+                            <p className='text-secondary text-2xl flex justify-center items-center mt-5'> Please <Link to={'/login'} className="mx-2 text-blue-600 font-bold">Login</Link> to buy.</p>
+                    }
                 </div>
             </div>
         </div>
@@ -46,3 +59,4 @@ const AllProductsCard = ({ product, setItem }) => {
 };
 
 export default AllProductsCard;
+// 

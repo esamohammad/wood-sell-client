@@ -61,7 +61,7 @@ const AdvertisementCard = ({ add, setItem }) => {
                     onClick={() => setItem(add)}
                 >Add To Cart</label>
                         :
-                        <p className='text-secondary text-2xl flex justify-center items-center mt-5'> Please <Link to={'/login'} className="mx-2 text-blue-700">Login</Link> to buy.</p>
+                        <p className='text-secondary text-2xl flex justify-center items-center mt-5'> Please <Link to={'/login'} className="mx-2 text-blue-600 font-bold">Login</Link> to buy.</p>
                 }
 
 
