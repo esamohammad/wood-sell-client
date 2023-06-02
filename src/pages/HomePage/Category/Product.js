@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthProvider';
 
 
 const Product = ({item}) => {
-
+    const { user } = useContext(AuthContext)
     console.log(item)
 
     const { condition, image, location, name, originalPrice, postedTime, resalePrice, sellerName, usedYear, verified, } = item;
@@ -37,7 +39,22 @@ const Product = ({item}) => {
                         <p className='font-semibold'>Condition : <span className='font-bold'>{condition}</span></p>
                         <p className='font-semibold'>Used For : <span className='font-bold'>{usedYear} Years</span></p>
                     </div>
-                    <button className='btn btn-outline btn-secondary w-full mt-5'>Add To Cart</button>
+                  
+                    
+                    {
+                        user?.uid ?
+                           
+                            <p className='text-secondary text-2xl flex justify-center items-center mt-5'> Show <Link to={'/allproducts'} className="mx-2 text-blue-600 font-bold">More Products</Link> to buy.</p>
+                    :
+                            <p className='text-secondary text-2xl flex justify-center items-center mt-5'> Please <Link to={'/login'} className="mx-2 text-blue-600 font-bold">Login</Link> to booking.</p>
+                            
+                    
+                    
+                        }
+
+
+
+
                 </div>
             </div>
         </div>
