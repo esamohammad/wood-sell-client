@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import useTitle from '../../../hooks/useTitle';
 import ConfirmationModal from '../../../components/ConfirmationModal';
+import { toast } from 'react-hot-toast';
 
 const MyOrders = () => {
     useTitle('Orders')
@@ -17,7 +18,7 @@ const MyOrders = () => {
 
 
     //!Tanstack quary for myOrders
-    const { data: bookings = [], isLoading } = useQuery({
+    const { data: bookings = [], isLoading,  refetch } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
@@ -40,8 +41,20 @@ const MyOrders = () => {
     }
 
     // !success Action on Modal
-    const handleDeleteBooking = booking => {
-        console.log(booking);
+    const handleDeleteBooking = p => {
+        fetch(`http://localhost:5000/bookings/${p._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    refetch();
+                    toast.success(` ${p.name} deleted successfully`)
+                }
+            })
     }
 
     if (isLoading) {
