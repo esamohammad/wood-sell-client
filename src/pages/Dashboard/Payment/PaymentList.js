@@ -1,19 +1,45 @@
 import React from 'react';
-import { useLoaderData, useNavigation } from 'react-router-dom';
 import Spinner from '../../../utils/Spinner';
 import useTitle from '../../../hooks/useTitle';
 import { useState } from 'react';
 import ConfirmationModal from '../../../components/ConfirmationModal';
+import { toast } from 'react-hot-toast';
+import { useQuery } from '@tanstack/react-query';
+
+
+
+
 
 const PaymentList = () => {
-    useTitle('PaymentList')
+    useTitle('AllPayments')
 
-    const payments = useLoaderData();
-    const navigation = useNavigation(); //!loading Spinner.
+    //!All Payments url
+    const url = `http://localhost:5000/payments`;
+
+
+
+
+    //!Tanstack quary for AllPayments
+    const { data: payments = [], isLoading, refetch } = useQuery({
+        queryKey: ['payments'],
+        queryFn: async () => {
+            const res = await fetch(url, {
+                //!jwt verification
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
+            const data = await res.json();
+            return data;
+        }
+    })
+
+
 
 
     // !Deleting Payment State
     const [deletingPayment, setDeletingPayment] = useState(null);
+
 
 
 
@@ -26,16 +52,31 @@ const PaymentList = () => {
 
     // !success Action on Modal
     const handleDeletePayment = payment => {
-        console.log(payment);
+        fetch(`http://localhost:5000/payments/${payment._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    refetch();
+                    toast.success(` ${payment.name} deleted successfully`)
+                }
+            })
     }
 
 
 
 
-
-    if (navigation.state === "loading") { //!loading Spinner.
+    if (isLoading) {
         return <Spinner></Spinner>
     }
+
+
+
+
     return (
         <div>
             <h3 className="text-3xl mb-5 text-center font-bold mt-2 text-primary ">Payments List: {payments.length} </h3>

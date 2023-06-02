@@ -40,6 +40,7 @@ const MyOrders = () => {
         setDeletingBooking(null);
     }
 
+    
     // !success Action on Modal
     const handleDeleteBooking = p => {
         fetch(`http://localhost:5000/bookings/${p._id}`, {

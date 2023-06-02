@@ -4,7 +4,7 @@ import Login from "../pages/LoginPage/Login";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Register from "../pages/RegisterPage/Register";
 import Main from "../layout/Main";
-import Dashboard from "../pages/Dashboard/Dashboard";
+
 import Category from "../pages/HomePage/Category/Category";
 import Product from "../pages/HomePage/Category/Product";
 import Faq from '../pages/Faq/Faq';
@@ -23,7 +23,7 @@ import AllBuyers from "../pages/Dashboard/AllBuyer/AllBuyer";
 import MySellPost from "../pages/Dashboard/MySellPost/MySellPost";
 
 
-// import AllProduct from "../pages/AllProduct";
+
 
 export const routes = createBrowserRouter([
     {
@@ -103,7 +103,7 @@ export const routes = createBrowserRouter([
             {
                 path: '/dashboard/paymentsList',
                 element: <AdminRoute><PaymentList></PaymentList></AdminRoute>,
-                loader: () => fetch("http://localhost:5000/payments"),
+                
             },
             {
                 path: '/dashboard/allSeller',
