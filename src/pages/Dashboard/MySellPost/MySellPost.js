@@ -1,8 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../context/AuthProvider';
 import useTitle from '../../../hooks/useTitle';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../../../utils/Spinner';
+import ConfirmationModal from '../../../components/ConfirmationModal';
+import { toast } from 'react-hot-toast';
 
 
 const MySellPost = () => {
@@ -16,7 +18,7 @@ const MySellPost = () => {
 
 
     //!Tanstack quary for myOrders
-    const { data: products = [], isLoading } = useQuery({
+    const { data: products = [], isLoading ,refetch} = useQuery({
         queryKey: ['products', user?.email],
         queryFn: async () => {
             const res = await fetch(url,{
@@ -32,6 +34,42 @@ const MySellPost = () => {
     })
 
 
+
+
+
+
+
+
+
+
+
+
+
+    // !Deleting Booking State
+    const [deletingProduct, setDeletingProduct] = useState(null);
+
+    // !Close Modal Function
+    const closeModal = () => {
+        setDeletingProduct(null);
+    }
+
+
+    // !success Action on Modal
+    const handleDeleteProduct = p => {
+        fetch(`http://localhost:5000/mySellPost/${p._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    refetch();
+                    toast.success(` ${p.name} deleted successfully`)
+                }
+            })
+    }
 
     if (isLoading) {
         return <Spinner></Spinner>
@@ -86,7 +124,7 @@ const MySellPost = () => {
                                 <td>{product.postedTime}</td>
                                 <td>
 
-                                    <label onClick="" htmlFor="confirmation-modal" className="btn bg-red-500 hover:bg-red-700 text-white btn-xs">Delete</label>
+                                    <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn bg-red-500 hover:bg-red-700 text-white btn-xs">Delete</label>
 
                                 </td>
                             </tr>)
@@ -94,7 +132,27 @@ const MySellPost = () => {
                     </tbody>
                 </table>
             </div>
-            
+            {
+
+                deletingProduct &&
+
+                <ConfirmationModal
+                    title={`Wait! Are you sure you want to delete?`}
+
+                    message={`This 
+                     ${deletingProduct.name} will be  permanently delete from the database.`}
+
+                    closeModal={closeModal}
+
+                    successAction={handleDeleteProduct}
+
+                    modalData={deletingProduct}
+
+                    successButtonName="Delete"
+
+                ></ConfirmationModal>
+
+            }
         </div>
     );
 };
