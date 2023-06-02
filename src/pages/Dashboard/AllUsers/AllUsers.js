@@ -56,7 +56,7 @@ const AllUsers = () => {
 
     return (
         <div>
-            <h3 className="text-3xl mb-5 text-center font-bold mt-2 text-primary ">All Buyers: {users.length} </h3>
+            <h3 className="text-3xl mb-5 text-center font-bold mt-2 text-primary ">All Users: {users.length} </h3>
 
             {/* //!table start */}
             <table className="table w-full">
@@ -66,7 +66,6 @@ const AllUsers = () => {
                         <th className='text-base'>Image</th>
                         <th className='text-base'>Name</th>
                         <th className='text-base'>Email</th>
-                        <th className='text-base'>Mobile</th>
                         <th className='text-base'>Admin Action</th>
                         <th className='text-base'>Delete</th>
                     </tr>
@@ -78,7 +77,7 @@ const AllUsers = () => {
                             <td>
                                 <div className="flex items-center space-x-3">
                                     <div className="avatar">
-                                        <div className="mask mask-squircle w-12 h-12">
+                                        <div className="mask mask-squircle w-16 h-16">
                                             <img src={user.image} alt="Avatar" />
                                         </div>
                                     </div>
@@ -86,7 +85,7 @@ const AllUsers = () => {
                             </td>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td>{user.mobile}</td>
+                           
                             <td>
                                 {user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-primary btn-sm hover:bg-secondary  text-white'>Make Admin</button>}
                             </td>
