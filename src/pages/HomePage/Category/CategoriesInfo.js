@@ -11,7 +11,7 @@ const CategoriesInfo = () => {
         axios.get(`http://localhost:5000/categories`)
             .then(res => {
                 setCategories(res.data)
-                setLoading(false)
+                
             })
             .catch(error => console.error(error))
     }, [setLoading])

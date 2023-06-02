@@ -79,7 +79,7 @@ const AllUsers = () => {
                                 <div className="flex items-center space-x-3">
                                     <div className="avatar">
                                         <div className="mask mask-squircle w-12 h-12">
-                                            <img src="" alt="Avatar" />
+                                            <img src={user.image} alt="Avatar" />
                                         </div>
                                     </div>
                                 </div>

@@ -6,6 +6,7 @@ import Spinner from '../../../utils/Spinner';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../../context/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 
 
 
@@ -81,6 +82,7 @@ const verified = [
 //*=====================================\\
 //!M.component
 const AddProduct = () => {
+    useTitle('AddProduct'); //*Title hook
     const { register, handleSubmit, formState: { errors } } = useForm();
 
 

@@ -24,23 +24,28 @@ const DashboardLayout = () => {
                 <div className="drawer-side">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80  text-base-content">
+
                         <li className=' text-lg font-bold text-secondary-focus mb-0.5'><Link to='/dashboard'> <span className='text-indigo-600 '><FaTasks /></span> My Orders </Link></li>
+
                         <li className=' text-lg font-bold text-secondary-focus mb-0.5'><Link to="/dashboard/addproduct"><span className='text-indigo-600 '><FaRegPlusSquare /></span>Add Product</Link></li>
+
                         <li className=' text-lg font-bold text-secondary-focus mb-0.5'><Link to='/dashboard/mysellpost'> <span className='text-indigo-600 '><FcBullish /></span> My Sell Post </Link></li>
                         
                         
                         {
                             isAdmin && <>
+
                                 <li className=' text-lg font-bold text-secondary-focus mb-0.5'><Link to='/dashboard/allusers'> <span className='text-indigo-600 '><FaUsers /></span> All Users </Link></li>
 
 
-                               
-
                                 <li className=' text-lg font-bold text-secondary-focus mb-0.5'><Link to="/dashboard/manageproducts"><span className='text-indigo-600 '><FaDollyFlatbed /></span>Manage Products</Link></li>
+
 
                                 <li className=' text-lg font-bold text-secondary-focus mb-0.5'><Link to="/dashboard/paymentsList"><span className='text-indigo-600 '><FaMoneyBillWave /></span>Payment List</Link></li>
 
+
                                 <li className=' text-lg font-bold text-secondary-focus mb-0.5'><Link to="/dashboard/allSeller"><span className='text-indigo-600 '><FaPersonBooth /></span>Seller List</Link></li>
+
 
                                 <li className=' text-lg font-bold text-secondary-focus mb-0.5'><Link to="/dashboard/allBuyer"><span className='text-indigo-600 '><FcDebt /></span>Buyer List</Link></li>
                             </>
