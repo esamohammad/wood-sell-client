@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import Spinner from '../../../utils/Spinner';
 import { toast } from 'react-hot-toast';
 import useTitle from '../../../hooks/useTitle';
+import ConfirmationModal from '../../../components/ConfirmationModal';
 
 const AllSeller = () => {
     useTitle('AllSeller');
@@ -20,13 +21,53 @@ const AllSeller = () => {
 
 
 
+    // !Deleting Booking State
+    const [deletingSeller, setDeletingSeller] = useState(null);
+
+    // !Close Modal Function
+    const closeModal = () => {
+        setDeletingSeller(null);
+    }
+
+
+    // !success Action on Modal
+    const handleDeleteSeller = p => {
+        fetch(`http://localhost:5000/users/${p._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+
+                    toast.success(` ${p.name} deleted successfully ❎❎`)
+                    refetch();
+                }
+            })
+    }
+
     if (isLoading) {
         return <Spinner></Spinner>
     }
 
     return (
         <div>
-            <h3 className="text-3xl mb-2 text-center font-bold mt-2 text-primary ">Buyer Numbers: {sellers.length}<span className='text-secondary '></span></h3>
+            {
+            
+            sellers.length === 0 ?
+
+           <h3 className="text-3xl mb-2 text-center font-bold mt-2 text-primary ">Seller Database Empty<span className='text-secondary '></span></h3>
+
+           :
+           
+           <h3 className="text-3xl mb-2 text-center font-bold mt-2 text-primary ">Seller Numbers: {sellers.length}<span className='text-secondary '></span></h3>
+           
+           }
+
+
+
             {/* //!table start */}
             <table className="table w-full">
                 <thead>
@@ -56,13 +97,35 @@ const AllSeller = () => {
 
 
                             <td>
-                                <button className='btn bg-red-500 hover:bg-red-700 text-white btn-xs'>Delete</button>
+                                <label onClick={() => setDeletingSeller(seller)} htmlFor="confirmation-modal" className="btn bg-red-500 hover:bg-red-700 text-white btn-xs">Delete</label>
                             </td>
                         </tr>)
                     }
 
                 </tbody>
             </table>
+
+            {
+
+                deletingSeller &&
+
+                <ConfirmationModal
+                    title={`Are you sure you want to delete?`}
+
+                    message={`Be careful we have not any other information of this Payment history of 
+                     ${deletingSeller.productName}.It will be  permanently delete from the database.`}
+
+                    closeModal={closeModal}
+
+                    successAction={handleDeleteSeller}
+
+                    modalData={deletingSeller}
+
+                    successButtonName="Delete"
+
+                ></ConfirmationModal>
+
+            }
         </div>
     );
 };

@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import Spinner from '../../../utils/Spinner';
 import { toast } from 'react-hot-toast';
 import useTitle from '../../../hooks/useTitle';
+import ConfirmationModal from '../../../components/ConfirmationModal';
 
 const AllBuyer = () => {
     useTitle('AllBuyer');
@@ -20,6 +21,34 @@ const AllBuyer = () => {
 
 
 
+
+    // !Deleting Booking State
+    const [deletingBuyer, setDeletingBuyer] = useState(null);
+
+    // !Close Modal Function
+    const closeModal = () => {
+        setDeletingBuyer(null);
+    }
+
+
+    // !success Action on Modal
+    const handleDeleteBuyer = p => {
+        fetch(`http://localhost:5000/users/${p._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+
+                    toast.success(` ${p.name} deleted successfully ❎❎`)
+                    refetch();
+                }
+            })
+    }
+
     if (isLoading) {
         return <Spinner></Spinner>
     }
@@ -27,7 +56,20 @@ const AllBuyer = () => {
 
     return (
         <div>
-            <h3 className="text-3xl mb-2 text-center font-bold mt-2 text-primary ">Buyer Numbers: {buyers.length}<span className='text-secondary '></span></h3>
+            {/* Conditional Text */}
+            {
+
+                buyers.length === 0 ?
+
+                    <h3 className="text-3xl mb-2 text-center font-bold mt-2 text-primary ">Buyers Database Empty<span className='text-secondary '></span></h3>
+
+                    :
+
+                    <h3 className="text-3xl mb-2 text-center font-bold mt-2 text-primary ">Seller Numbers: {buyers.length}<span className='text-secondary '></span></h3>
+
+            }
+
+
             {/* //!table start */}
             <table className="table w-full">
                 <thead>
@@ -57,13 +99,34 @@ const AllBuyer = () => {
                             
 
                             <td>
-                                <button className='btn bg-red-500 hover:bg-red-700 text-white btn-xs'>Delete</button>
+                                <label onClick={() => setDeletingBuyer(buyer)} htmlFor="confirmation-modal" className="btn bg-red-500 hover:bg-red-700 text-white btn-xs">Delete</label>
                             </td>
                         </tr>)
                     }
 
                 </tbody>
             </table>
+            {
+
+                deletingBuyer &&
+
+                <ConfirmationModal
+                    title={`Are you sure you want to delete?`}
+
+                    message={`Be careful we have not any other information of this Payment history of 
+                     ${deletingBuyer.productName}.It will be  permanently delete from the database.`}
+
+                    closeModal={closeModal}
+
+                        successAction={handleDeleteBuyer}
+
+                    modalData={deletingBuyer}
+
+                    successButtonName="Delete"
+
+                ></ConfirmationModal>
+
+            }
         </div>
     );
 };
