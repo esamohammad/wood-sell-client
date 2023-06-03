@@ -24,7 +24,7 @@ const AllProducts = () => {
     return (
         <div className='lg:px-20 py-10'>{ }
             <h1 className='text-2xl font-semibold text-secondary text-center'>Choose Your Products With <span className='font-bold text-yellow-600' >Wood Sell</span> !!</h1>
-            <div className='gap-10 grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 my-12'>
+            <div className='gap-10 grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 justify-items-center my-12'>
                 {
                     products.map(product => <AllProductsCard
                         key={product._id}

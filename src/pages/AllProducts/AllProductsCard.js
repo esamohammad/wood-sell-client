@@ -13,8 +13,8 @@ const AllProductsCard = ({ product, setItem }) => {
     return (
         <div>
 
-            <div className="card w-96 h-[560px] bg-base-100 shadow-xl">
-                <figure><img src={image} alt="Shoes" className='h-64 w-full  border-2 rounded-2xl' /></figure>
+            <div className="card w-80 lg:w-96 h-[560px] bg-base-100 shadow-xl">
+                <figure><img src={image} alt="Shoes" className='h-64 w-full  border-2 rounded-2xl ' /></figure>
                 <div className='mx-5 text-left'>
                     <h2 className="card-title font-bold text-center text-secondary h-20">
                         {name}
