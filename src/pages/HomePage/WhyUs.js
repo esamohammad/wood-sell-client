@@ -3,11 +3,11 @@ import { FaCartPlus, FaCertificate, FaDollarSign } from 'react-icons/fa';
 
 const WhyUs = () => {
     return (
-        <div className='mx-auto my-5 '>
+        <div className='py-5 mx-2'>
             <h2 className='text-4xl text-center text-secondary font-bold my-5'>Our Services..!</h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 '>
                 <div>
-                    <div className="card w-96 bg-base-100 shadow-xl text-secondary">
+                    <div className="card w-96 bg-base-100 shadow-xl text-secondary max-w-xs md:max-w-sm">
                         <div className="card-body">
                             <div className="card-actions justify-center">
                                 <FaCartPlus className='text-4xl'></FaCartPlus>
@@ -18,7 +18,7 @@ const WhyUs = () => {
                     </div>
                 </div>
                 <div>
-                    <div className="card w-96 bg-base-100 shadow-xl text-secondary">
+                    <div className="card w-96 bg-base-100 shadow-xl text-secondary max-w-xs md:max-w-sm">
                         <div className="card-body">
                             <div className="card-actions justify-center">
                                 <FaCertificate className='text-4xl' />
@@ -29,7 +29,7 @@ const WhyUs = () => {
                     </div>
                 </div>
                 <div>
-                    <div className="card w-96 bg-base-100 shadow-xl text-secondary">
+                    <div className="card w-96 bg-base-100 shadow-xl text-secondary max-w-xs md:max-w-sm">
                         <div className="card-body">
                             <div className="card-actions justify-center">
                                 <FaDollarSign className='text-4xl' />

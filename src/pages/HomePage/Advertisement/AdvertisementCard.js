@@ -19,7 +19,7 @@ const AdvertisementCard = ({ add, setItem }) => {
         <div>
 
 
-            <div className="card w-96 mx-auto h-[560px] bg-base-200 lg:shadow-xl border-2 relative ">
+            <div className="card max-w-xs md:max-w-sm mx-auto h-[560px] bg-base-200 lg:shadow-xl border-2 relative ">
                 <figure><img src={image} alt="Shoes" className='h-64 w-full rounded-2xl' /></figure>
                 <div className='mx-5 text-left'>
                     <h2 className="card-title font-bold text-center text-secondary h-20">
