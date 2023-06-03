@@ -114,7 +114,7 @@ const AllBuyer = () => {
                     title={`Are you sure you want to delete?`}
 
                     message={`Be careful we have not any other information of this Payment history of 
-                     ${deletingBuyer.productName}.It will be  permanently delete from the database.`}
+                     ${deletingBuyer.name}.It will be  permanently delete from the database.`}
 
                     closeModal={closeModal}
 

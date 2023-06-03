@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import Spinner from '../../../utils/Spinner';
 import { toast } from 'react-hot-toast';
+import useTitle from '../../../hooks/useTitle';
+import ConfirmationModal from '../../../components/ConfirmationModal';
 
 
 
@@ -16,7 +18,7 @@ import { toast } from 'react-hot-toast';
 
 
 const AllUsers = () => {
-
+    useTitle('AllUsers');
     // !=================================
     // !React quary- users data get or fetch
     const { data: users = [], isLoading, refetch } = useQuery({
@@ -49,6 +51,33 @@ const AllUsers = () => {
             })
     }
 
+
+    // !Deleting Booking State
+    const [deletingUser, setDeletingUser] = useState(null);
+
+    // !Close Modal Function
+    const closeModal = () => {
+        setDeletingUser(null);
+    }
+
+
+    // !success Action on Modal
+    const handleDeleteUser = p => {
+        fetch(`http://localhost:5000/users/${p._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+
+                    toast.success(` ${p.name} deleted successfully`)
+                    refetch();
+                }
+            })
+    }
 
     if (isLoading) {
         return <Spinner></Spinner>
@@ -90,13 +119,34 @@ const AllUsers = () => {
                                 {user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-primary btn-sm hover:bg-secondary  text-white'>Make Admin</button>}
                             </td>
                             <td>
-                                <button className='btn bg-red-500 hover:bg-red-700 text-white btn-xs'>Delete</button>
+                                <label onClick={() => setDeletingUser(user)} htmlFor="confirmation-modal" className="btn bg-red-500 hover:bg-red-700 text-white btn-xs">Delete</label>
                             </td>
                         </tr>)
                     }
 
                 </tbody>
             </table>
+            {
+
+                deletingUser &&
+
+                <ConfirmationModal
+                    title={`Are you sure you want to delete?`}
+
+                    message={`Be careful we have not any other information of this Payment history of 
+                     ${deletingUser.name}.It will be  permanently delete from the database.`}
+
+                    closeModal={closeModal}
+
+                    successAction={handleDeleteUser}
+
+                    modalData={deletingUser}
+
+                    successButtonName="Delete"
+
+                ></ConfirmationModal>
+
+            }
         </div>
 
     );

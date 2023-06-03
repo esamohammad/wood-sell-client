@@ -61,7 +61,7 @@ const AllSeller = () => {
            <h3 className="text-3xl mb-2 text-center font-bold mt-2 text-primary ">Seller Database Empty<span className='text-secondary '></span></h3>
 
            :
-           
+
            <h3 className="text-3xl mb-2 text-center font-bold mt-2 text-primary ">Seller Numbers: {sellers.length}<span className='text-secondary '></span></h3>
            
            }
@@ -113,7 +113,7 @@ const AllSeller = () => {
                     title={`Are you sure you want to delete?`}
 
                     message={`Be careful we have not any other information of this Payment history of 
-                     ${deletingSeller.productName}.It will be  permanently delete from the database.`}
+                     ${deletingSeller.name}.It will be  permanently delete from the database.`}
 
                     closeModal={closeModal}
 
