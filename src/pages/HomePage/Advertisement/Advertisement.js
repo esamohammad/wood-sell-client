@@ -30,12 +30,12 @@ const Advertisement = () => {
     return (
         <div>
             <div className='my-5 shadow-lg bg-blue-200 rounded-md'>
-                <marquee className='text-2xl text-black p-4 ' > A huge Discount is going for all of this products. don't be late..!! grave the Opportunity..!!</marquee>
+                <marquee className='text-xl lg:text-2xl text-black p-4 ' > A huge Discount is going for all of this products. don't be late..!! grave the Opportunity..!!</marquee>
             </div>
 
 
 
-            <h1 className='text-4xl text-center text-secondary font-bold my-5'>Advertisement</h1>
+            <h1 className='text-3xl lg:text-4xl text-center text-secondary font-bold my-5'>Advertisement</h1>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-7 my-10'>
                 {
                     advertise.map((add) => <AdvertisementCard

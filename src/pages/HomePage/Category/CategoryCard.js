@@ -9,7 +9,7 @@ const CategoryCard = ({ category }) => {
     return (
         <div>
             <Link to={`/category/${category.id}`}> 
-                <div className={`card hover:bg-accent bg-base-100 shadow-xl text-secondary`}>
+                <div className={`card hover:bg-accent bg-base-100 shadow-xl text-secondary mx-4`}>
                     <div className="card-body">
                         <div className="card-actions justify-center">
                             <img src={image} alt="" className='w-1/3' />

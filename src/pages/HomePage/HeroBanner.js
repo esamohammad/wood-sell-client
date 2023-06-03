@@ -5,7 +5,7 @@ import banner from './../../assets/banner.jpeg'
 
 const HeroBanner = () => {
     return (
-        <div className="hero mt-20  ">
+        <div className="hero mt-8 lg:mt-12 ">
             <div className="hero-content flex-col md:flex-row-reverse">
                 <img src={banner} className="md:w-1/2  rounded-lg shadow-2xl" alt='' />
                 <div className='md:w-1/3'>
