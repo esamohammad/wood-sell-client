@@ -73,7 +73,7 @@ const AllUsers = () => {
             .then(data => {
                 if (data.deletedCount > 0) {
 
-                    toast.success(` ${p.name} deleted successfully`)
+                    toast.success(` ${p.name} deleted successfully ❎❎`)
                     refetch();
                 }
             })

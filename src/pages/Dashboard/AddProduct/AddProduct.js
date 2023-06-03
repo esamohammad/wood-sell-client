@@ -47,7 +47,7 @@ const conditions = [
 
 
 
-
+/*
 //*=====================================\\
 //!verified of product array.(boolean value)
 const verified = [
@@ -61,7 +61,7 @@ const verified = [
     }
 ]
 //*=====================================\\
-
+*/
 
 
 

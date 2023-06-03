@@ -62,7 +62,7 @@ const PaymentList = () => {
             .then(data => {
                 if (data.deletedCount > 0) {
                     refetch();
-                    toast.success(` ${payment.name} deleted successfully`)
+                    toast.success(` ${payment.name} deleted successfully ❎❎`)
                 }
             })
     }

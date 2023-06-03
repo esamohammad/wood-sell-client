@@ -61,7 +61,7 @@ const ManageProduct = () => {
             .then(data => {
                 if (data.deletedCount > 0) {
                     refetch();
-                    toast.success(` ${p.name} deleted successfully`)
+                    toast.success(` ${p.name} deleted successfully ❎❎`)
                 }
             })
     }

@@ -22,9 +22,10 @@ const MyOrders = () => {
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
-                //!jwt verification
+
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
+
                 }
             });
             const data = await res.json();
@@ -53,7 +54,7 @@ const MyOrders = () => {
             .then(data => {
                 if (data.deletedCount > 0) {
                    
-                    toast.success(` ${p.name} deleted successfully`)
+                    toast.success(` ${p.name} deleted successfully ❎❎`)
                     refetch();
                 }
             })
@@ -68,7 +69,19 @@ const MyOrders = () => {
     return (
 
         <div>
-            <h3 className="text-3xl mb-5 text-center font-bold mt-2 text-primary ">My Orders: {bookings.length} </h3>
+            {/* Conditional Text */}
+            {
+
+                bookings.length === 0 ?
+
+                    <h3 className="text-3xl mb-2 text-center font-bold mt-2 text-primary ">Your Orders Empty..! Booked Something..! <span className='text-secondary '></span></h3>
+
+                    :
+
+                    <h3 className="text-3xl mb-2 text-center font-bold mt-2 text-primary ">Orders Numbers: {bookings.length}<span className='text-secondary '></span></h3>
+
+            }
+
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
