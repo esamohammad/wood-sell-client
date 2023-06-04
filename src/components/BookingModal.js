@@ -36,7 +36,7 @@ const BookingModal = ({ item, setItem }) => {
        
 
         //!Post Api Methods
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://wood-sell-server.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
