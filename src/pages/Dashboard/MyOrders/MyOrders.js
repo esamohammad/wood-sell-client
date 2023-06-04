@@ -13,7 +13,7 @@ const MyOrders = () => {
     const { user } = useContext(AuthContext);
 
     //!Email quary for myOrders
-    const url = `http://localhost:5000/bookings?email=${user?.email}`;
+    const url = `https://wood-sell-server.vercel.app/bookings?email=${user?.email}`;
 
 
 
@@ -44,7 +44,7 @@ const MyOrders = () => {
     
     // !success Action on Modal
     const handleDeleteBooking = p => {
-        fetch(`http://localhost:5000/bookings/${p._id}`, {
+        fetch(`https://wood-sell-server.vercel.app/bookings/${p._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

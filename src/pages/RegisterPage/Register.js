@@ -115,7 +115,7 @@ const Register = () => {
     //! Save user to the database - Post api call.
     const saveUser = (name, email, role, image) => {
             const user = { name, email, role, image };
-        fetch('http://localhost:5000/users', {
+        fetch('https://wood-sell-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
