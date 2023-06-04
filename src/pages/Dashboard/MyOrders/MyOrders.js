@@ -74,11 +74,11 @@ const MyOrders = () => {
 
                 bookings.length === 0 ?
 
-                    <h3 className="text-3xl mb-2 text-center font-bold mt-2 text-primary ">Your Orders Empty..! Booked Something..! <span className='text-secondary '></span></h3>
+                    <h3 className="text-base md:text-3xl mb-2 text-center font-bold mt-2 text-primary ">Your Orders Empty..! Booked Something..! <span className='text-secondary '></span></h3>
 
                     :
 
-                    <h3 className="text-3xl mb-2 text-center font-bold mt-2 text-primary ">Orders Numbers: {bookings.length}<span className='text-secondary '></span></h3>
+                    <h3 className="text-base md:text-3xl text-center font-bold mt-2 text-primary ">Orders Numbers: {bookings.length}<span className='text-secondary '></span></h3>
 
             }
 
@@ -86,13 +86,13 @@ const MyOrders = () => {
                 <table className="table w-full">
                     <thead>
                         <tr>
-                            <th className='text-base'>SL.</th>
-                            <th className='text-base'>Product Image</th>
-                            <th className='text-base'>Product Name</th>
-                            <th className='text-base'>Category</th>
-                            <th className='text-base'>price</th>
-                            <th className='text-base'>payment</th>
-                            <th className='text-base'>Delete</th>
+                            <th className='text-xs md:text-base'>SL.</th>
+                            <th className='text-xs md:text-base'>Product Image</th>
+                            <th className='text-xs md:text-base'>Product Name</th>
+                            <th className='text-xs md:text-base'>Category</th>
+                            <th className='text-xs md:text-base'>price</th>
+                            <th className='text-xs md:text-base'>payment</th>
+                            <th className='text-xs md:text-base'>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
