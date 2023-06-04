@@ -77,7 +77,7 @@ const ManageProduct = () => {
 
     return (
         <div>
-            <h3 className="text-3xl mb-5 text-center font-bold mt-2 text-primary ">Manage Products: {products?.length} </h3>
+            <h3 className="text-base md:text-3xl mb-5 text-center font-bold mt-2 text-primary ">Manage Products: {products?.length} </h3>
 
 
 
@@ -86,14 +86,14 @@ const ManageProduct = () => {
                 <table className="table w-full">
                     <thead>
                         <tr>
-                            <th className='text-base'>SL.</th>
-                            <th className='text-base'>Product Image</th>
-                            <th className='text-base'>Product Name</th>
+                            <th className='text-xs md:text-base'>SL.</th>
+                            <th className='text-xs md:text-base'>Product Image</th>
+                            <th className='text-xs md:text-base'>Product Name</th>
                             
-                            <th className='text-base'>Resell Price</th>
-                            <th className='text-base'>Location</th>
-                            <th className='text-base'>Category</th>
-                            <th className='text-base'>Action</th>
+                            <th className='text-xs md:text-base'>Resell Price</th>
+                            <th className='text-xs md:text-base'>Location</th>
+                            <th className='text-xs md:text-base'>Category</th>
+                            <th className='text-xs md:text-base'>Action</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -206,7 +206,7 @@ const AddProduct = () => {
     return (
         <div>
             <div className='w-full px-4'>
-                <h3 className="text-3xl mb-5 text-center font-bold mt-2 text-primary ">Add Product </h3>
+                <h3 className="text-base md:text-3xl mb-5 text-center font-bold mt-2 text-primary ">Add Product </h3>
                 <form onSubmit={handleSubmit(handleAddDoctor)}>
 
 
