@@ -81,22 +81,22 @@ const MySellPost = () => {
 
         <div>
             {products.length===0 ? 
-                <p className="text-3xl mb-5 text-center font-bold mt-2 text-primary ">Your Sell Post Empty </p>
+                <p className="text-base md:text-3xl mb-5 text-center font-bold mt-2 text-primary ">Your Sell Post Empty </p>
              
             :
                 
-                <h3 className="text-3xl mb-5 text-center font-bold mt-2 text-primary ">My Sell Post: {products.length} </h3>}
+                <h3 className="text-base md:text-3xl mb-5 text-center font-bold mt-2 text-primary ">My Sell Post: {products.length} </h3>}
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
                         <tr>
-                            <th className='text-base'>SL.</th>
-                            <th className='text-base'>Product Image</th>
-                            <th className='text-base'>Product Name</th>
-                            <th className='text-base'>Category</th>
-                            <th className='text-base'>price</th>
-                            <th className='text-base'>Post Date</th>
-                            <th className='text-base'>Delete</th>
+                            <th className='text-xs md:text-base'>SL.</th>
+                            <th className='text-xs md:text-base'>Product Image</th>
+                            <th className='text-xs md:text-base'>Product Name</th>
+                            <th className='text-xs md:text-base'>Category</th>
+                            <th className='text-xs md:text-base'>price</th>
+                            <th className='text-xs md:text-base'>Post Date</th>
+                            <th className='text-xs md:text-base'>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
