@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const ExtraSection = () => {
     return (
         <div className='bg-primary py-1 mx-2'>
-            <div className='lg:px-20 grid lg:grid-cols-2 gap-y-1 lg:gap-y-5 '>
+            <div className='lg:px-20 grid lg:grid-cols-2 gap-y-1 lg:gap-y-5 justify-items-center'>
                 <div className='max-w-xs lg:max-w-lg lg:my-16 my-10 px-4 md:px-0'>
                     <Player
                         src='https://assets6.lottiefiles.com/private_files/lf30_phcng6qv.json'
