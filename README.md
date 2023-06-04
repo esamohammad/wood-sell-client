@@ -16,7 +16,7 @@ Wood Sell is a Furniture based web application. Here used-furniture are availabl
 <br>
 
 
-# Admin Info
+# 💠Admin Info💠
 - email: admin@gmail.com
 - password: Aa@123
 
@@ -38,7 +38,7 @@ Wood Sell is a Furniture based web application. Here used-furniture are availabl
 <br>
 <br>
 
-# 💥✅Installation (Highly Encouraged for Learning Purpose )✅💥
+# 💥✅Installation (Test Purpose )✅💥
 
 - step 1: clone this repository  and server repository in your PC.
 - step 2: Install the dependencies for both repository and server.
