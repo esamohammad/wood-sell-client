@@ -61,11 +61,11 @@ const AllBuyer = () => {
 
                 buyers.length === 0 ?
 
-                    <h3 className="text-3xl mb-2 text-center font-bold mt-2 text-primary ">Buyers Database Empty<span className='text-secondary '></span></h3>
+                    <h3 className="text-base md:text-3xl mb-2 text-center font-bold mt-2 text-primary ">Buyers Database Empty<span className='text-secondary '></span></h3>
 
                     :
 
-                    <h3 className="text-3xl mb-2 text-center font-bold mt-2 text-primary ">Seller Numbers: {buyers.length}<span className='text-secondary '></span></h3>
+                    <h3 className="text-base md:text-3xl mb-2 text-center font-bold mt-2 text-primary ">Seller Numbers: {buyers.length}<span className='text-secondary '></span></h3>
 
             }
 
@@ -74,11 +74,11 @@ const AllBuyer = () => {
             <table className="table w-full">
                 <thead>
                     <tr>
-                        <th className='text-base'>SL.</th>
-                        <th className='text-base'>Image</th>
-                        <th className='text-base'>Name</th>
-                        <th className='text-base'>Email</th>
-                        <th className='text-base'>Delete</th>
+                        <th className='text-xs md:text-base'>SL.</th>
+                        <th className='text-xs md:text-base'>Image</th>
+                        <th className='text-xs md:text-base'>Name</th>
+                        <th className='text-xs md:text-base'>Email</th>
+                        <th className='text-xs md:text-base'>Delete</th>
                     </tr>
                 </thead>
                 <tbody>

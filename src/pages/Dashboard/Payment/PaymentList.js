@@ -79,18 +79,18 @@ const PaymentList = () => {
 
     return (
         <div>
-            <h3 className="text-3xl mb-5 text-center font-bold mt-2 text-primary ">Payments List: {payments.length} </h3>
+            <h3 className="text-base md:text-3xl mb-5 text-center font-bold mt-2 text-primary ">Payments List: {payments.length} </h3>
 
 
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
                         <tr>
-                            <th className='text-base'>SL.</th>
-                            <th className='text-base'>Transaction ID</th>
-                            <th className='text-base'>Price</th>
-                            <th className='text-base'>Client Email</th>
-                            <th className='text-base'>Delete</th>
+                            <th className='text-xs md:text-base'>SL.</th>
+                            <th className='text-xs md:text-base'>Transaction ID</th>
+                            <th className='text-xs md:text-base'>Price</th>
+                            <th className='text-xs md:text-base'>Client Email</th>
+                            <th className='text-xs md:text-base'>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
